@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>堆叠收纳 · 我的书房</title>
+  <title>堆叠收纳 · 我的书桌</title>
   <style>
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
     html, body {
@@ -12,7 +12,7 @@
       width: 100%;
       height: 100%;
       height: 100dvh;
-      background: #2b231d;
+      background: #2b221b;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -20,7 +20,7 @@
       font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
     }
 
-    /* Full-height responsive mobile frame */
+    /* Full-height responsive mobile container — frameless edge-to-edge desk! */
     .game-shell {
       width: min(100vw, calc(100dvh * 0.54));
       max-width: 480px;
@@ -29,10 +29,8 @@
       position: relative;
       border-radius: 24px;
       overflow: hidden;
-      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), 0 0 0 3px #432d1c;
-      background: #f9edd4;
-      display: flex;
-      flex-direction: column;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5), 0 0 0 2.5px #432d1c;
+      background: #d8a56e;
     }
 
     @media (max-width: 540px) {
@@ -45,80 +43,7 @@
       }
     }
 
-    /* Unified Flat Hand-Drawn Comic Ink Button */
-    .ink-btn {
-      border: 2.5px solid #432d1c;
-      box-shadow: 0 3px 0 #432d1c;
-      transition: transform 0.08s ease, box-shadow 0.08s ease;
-      cursor: pointer;
-      font-family: inherit;
-    }
-    .ink-btn:active:not(:disabled) {
-      transform: translateY(2px);
-      box-shadow: 0 1px 0 #432d1c;
-    }
-    .ink-btn:disabled {
-      opacity: 0.48;
-      cursor: not-allowed;
-    }
-
-    /* Flat Sunny Golden Header */
-    .header-bar {
-      position: relative;
-      z-index: 40;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: max(8px, env(safe-area-inset-top)) 14px 9px;
-      background: #f5c058;
-      border-bottom: 2.5px solid #432d1c;
-    }
-    .header-left { display: flex; align-items: center; gap: 8px; }
-    .icon-circle {
-      width: 36px;
-      height: 36px;
-      border-radius: 999px;
-      background: #fffdf7;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #432d1c;
-      padding: 0;
-    }
-    .header-center { text-align: center; }
-    .header-title {
-      font-size: 16px;
-      font-weight: 900;
-      color: #432d1c;
-      letter-spacing: 0.5px;
-      line-height: 1.2;
-    }
-    .header-sub {
-      font-size: 11px;
-      font-weight: 700;
-      color: #7c5226;
-    }
-    .btn-next-lvl {
-      height: 32px;
-      padding: 0 12px;
-      border-radius: 999px;
-      background: #fff7e2;
-      color: #432d1c;
-      font-size: 12px;
-      font-weight: 800;
-    }
-
-    /* Full-bleed Room Stage Wrapper (boxes & tray float cleanly over the upper wall!) */
-    .stage-wrap {
-      position: relative;
-      flex: 1 1 auto;
-      min-height: 0;
-      overflow: hidden;
-      background: #f7ead1;
-    }
-
-    /* PixiJS Playfield fills entire stage-wrap */
+    /* Full-bleed PixiJS 90° Top-Down Playfield (100% of viewport height!) */
     .playfield {
       position: absolute;
       inset: 0;
@@ -132,37 +57,118 @@
       touch-action: none;
     }
 
-    /* Floating Top HUD (3D Open-Top Storage Bins + Gray Staging Tray) */
+    /* Hand-drawn raster UI button interaction (100% authentic Plan 1 artwork!) */
+    .ui-img-btn {
+      border: none;
+      background: transparent;
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.08s ease;
+      filter: drop-shadow(0 2.5px 3px rgba(64, 38, 18, 0.24));
+    }
+    .ui-img-btn:active:not(:disabled) {
+      transform: translateY(1.5px) scale(0.96);
+    }
+    .ui-img-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      pointer-events: none;
+    }
+
+    /* Compact Frameless Top Floating HUD (100% Authentic Plan 1 Artwork!) */
     .floating-hud {
       position: absolute;
-      top: 8px;
+      top: max(8px, env(safe-area-inset-top));
       left: 10px;
       right: 10px;
       z-index: 30;
       pointer-events: none;
       display: flex;
       flex-direction: column;
-      gap: 11px;
+      align-items: center;
+      gap: 6px;
     }
 
+    /* Row 1: Authentic Hand-Drawn Round Buttons + Serrated Paper Ribbon + Next Pill */
+    .top-nav-row {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      pointer-events: none;
+    }
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      pointer-events: auto;
+    }
+    .icon-circle {
+      width: 36px;
+      height: 36px;
+    }
+
+    .kraft-ribbon {
+      position: relative;
+      pointer-events: auto;
+      width: 152px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 2.5px 3px rgba(64, 38, 18, 0.22));
+    }
+    .kraft-ribbon-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      pointer-events: none;
+    }
+    .ribbon-title {
+      position: relative;
+      z-index: 1;
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #3a2417;
+      letter-spacing: 0.7px;
+      white-space: nowrap;
+      margin-top: -1px;
+    }
+
+    .btn-next-lvl {
+      pointer-events: auto;
+      width: 72px;
+      height: 36px;
+    }
+
+    /* Row 2: Compact Authentic Plan-1 Hand-Drawn Boxes (true undistorted aspect ratio!) */
     .boxes-row {
+      width: 100%;
+      max-width: 312px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      align-items: stretch;
+      gap: 10px;
+      align-items: center;
       pointer-events: none;
     }
     .box-card {
       position: relative;
       pointer-events: auto;
-      transition: transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease;
+      transition: transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease;
     }
-
-    /* True 3D Open-Top Trapezoid Storage Bin */
     .bin-active, .bin-btn, .bin-empty {
       position: relative;
       width: 100%;
-      height: 86px;
+      aspect-ratio: 226 / 219;
       display: block;
       padding: 0;
       margin: 0;
@@ -174,147 +180,151 @@
       cursor: pointer;
       transition: transform 0.08s ease;
     }
-    .bin-btn:active {
-      transform: translateY(2px);
-    }
-    .bin-svg {
+    .bin-btn:active { transform: translateY(1.5px) scale(0.97); }
+    .bin-art-img {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
+      object-fit: contain;
       display: block;
-      filter: drop-shadow(0 3px 2px rgba(67, 45, 28, 0.18));
+      pointer-events: none;
+      filter: drop-shadow(0 3px 4px rgba(64, 38, 18, 0.22));
     }
-    .bin-content {
+    /* Exact Plan 1 pastel sticky label placed cleanly on front cream wall */
+    .bin-sticker {
       position: absolute;
-      left: 8px;
-      right: 8px;
-      top: 26px;
-      bottom: 10px;
+      left: 20%;
+      right: 20%;
+      bottom: 9%;
+      height: 32%;
+      border-radius: 5px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       pointer-events: none;
     }
-    .bin-content-locked {
-      gap: 4px;
-      top: 27px;
-      bottom: 8px;
+    .bin-cat-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #362216;
+      line-height: 1.12;
     }
-    .box-name {
-      font-size: 16px;
-      font-weight: 900;
-      color: #432d1c;
-      line-height: 1.1;
-      margin-top: -2px;
-    }
-    /* Progress pill straddling bottom rim of the storage bin (exact screenshot detail!) */
-    .box-badge-straddle {
-      position: absolute;
-      left: 50%;
-      bottom: -5px;
-      transform: translateX(-50%);
-      padding: 1px 12px;
-      border-radius: 6px;
-      border: 2px solid #432d1c;
-      font-size: 12px;
-      font-weight: 900;
-      color: #2b2016;
+    .bin-cat-count {
+      font-size: 11px;
+      font-weight: 600;
+      color: #442c1c;
       font-variant-numeric: tabular-nums;
-      line-height: 1.25;
-      white-space: nowrap;
-      z-index: 3;
-      box-shadow: 0 1px 0 rgba(67, 45, 28, 0.25);
+      line-height: 1.12;
     }
+    /* Hitbox aligned directly over the real painted peach "收1件" corner tape! */
     .box-quick {
       position: absolute;
-      top: 6px;
-      left: -2px;
-      padding: 1.5px 7px;
-      border-radius: 999px;
-      background: #ea8848;
-      border: 2px solid #432d1c;
-      color: #fff;
-      font-size: 9px;
-      font-weight: 900;
+      top: 38%;
+      right: 0;
+      width: 36%;
+      height: 28%;
+      background: transparent;
+      border: none;
+      padding: 0;
       cursor: pointer;
       z-index: 4;
-      box-shadow: 0 1.5px 0 #432d1c;
     }
-    .bin-locked-title {
-      font-size: 12px;
-      font-weight: 800;
-      color: #b7afa6;
-    }
-    .bin-locked-pill {
-      font-size: 10px;
-      font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: #3a3532;
-      color: #ffd886;
+    .bin-empty-inner {
+      position: absolute;
+      inset: 6%;
+      border: 2px dashed #8f6a45;
+      border-radius: 12px;
+      background: rgba(253, 246, 230, 0.42);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #6d4b2a;
+      font-size: 11.5px;
+      font-weight: 900;
     }
 
-    .box-pop { animation: boxPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .box-pop { animation: boxPop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1); }
     @keyframes boxPop {
       0% { transform: scale(1); }
-      45% { transform: scale(1.08) translateY(-2px); }
+      45% { transform: scale(1.07) translateY(-2px); }
       100% { transform: scale(1); }
     }
-    .box-complete { animation: boxComplete 0.42s ease forwards; }
+    .box-complete { animation: boxComplete 0.4s ease forwards; }
     @keyframes boxComplete {
       0% { transform: scale(1); opacity: 1; }
-      35% { transform: scale(1.1) rotate(-1.5deg); opacity: 1; }
-      100% { transform: scale(0.78) translateY(-28px); opacity: 0; }
+      35% { transform: scale(1.08) rotate(-1.5deg); opacity: 1; }
+      100% { transform: scale(0.78) translateY(-24px); opacity: 0; }
     }
-    .box-enter { animation: boxEnter 0.34s cubic-bezier(0.34, 1.56, 0.64, 1); }
+    .box-enter { animation: boxEnter 0.32s cubic-bezier(0.34, 1.56, 0.64, 1); }
     @keyframes boxEnter {
-      0% { transform: translateY(-18px) scale(0.84); opacity: 0; }
+      0% { transform: translateY(-16px) scale(0.84); opacity: 0; }
       100% { transform: translateY(0) scale(1); opacity: 1; }
     }
 
-    /* Flat Light-Gray Staging Tray Bar floating directly under the 3 bins */
+    /* Row 3: Compact Authentic Plan-1 Carved Oak 7-Slot Wooden Tray (7 equal-width wide slots: 5 cream + 2 locked) */
     .tray-container {
+      position: relative;
       pointer-events: auto;
-      background: #d2cec6;
-      border: 2.5px solid #432d1c;
-      border-radius: 9px;
-      padding: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 6px;
-      box-shadow: 0 3px 0 rgba(67, 45, 28, 0.22);
+      width: 312px;
+      max-width: 94%;
+      aspect-ratio: 620 / 146;
+      filter: drop-shadow(0 3px 4px rgba(64, 38, 18, 0.24));
+    }
+    .tray-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      display: block;
+      pointer-events: none;
+    }
+    .tray-slots-grid {
+      position: absolute;
+      top: 9%;
+      bottom: 24%;
+      left: 2.3%;
+      right: 2.3%;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1.3%;
+      align-items: stretch;
     }
     .tray-slot {
-      flex: 1;
-      height: 44px;
-      border-radius: 6px;
-      background: #fffaf0;
-      border: 2px solid #432d1c;
+      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
     }
-    .tray-slot img { width: 36px; height: 36px; object-fit: contain; pointer-events: none; }
-    .tray-slot-locked {
-      flex: 1;
-      height: 44px;
-      border-radius: 6px;
-      background: #2b2826;
-      border: 2px solid #432d1c;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #f7d99c;
-      font-size: 9px;
-      font-weight: 800;
-      gap: 1px;
-      cursor: pointer;
+    .tray-slot-unlocked-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 3px;
+      pointer-events: none;
     }
+    .tray-slot img.tray-item-img {
+      position: relative;
+      z-index: 2;
+      width: 82%;
+      height: 82%;
+      object-fit: contain;
+      pointer-events: none;
+      filter: drop-shadow(0 1.5px 1.5px rgba(64, 38, 18, 0.3));
+    }
+    .tray-slot-locked {
+      position: relative;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      padding: 0;
+    }
+    .tray-slot-locked:active { background: rgba(255, 236, 190, 0.18); border-radius: 4px; }
     .tray-shake { animation: trayShake 0.35s ease; }
     @keyframes trayShake {
       0%, 100% { transform: translateX(0); }
@@ -324,93 +334,23 @@
       80% { transform: translateX(4px); }
     }
 
-    /* Cartoon Cream Pan & Zoom Pills */
+    /* Pan hint badge (only for wide Level 2/3 scenes) */
     .pan-hint-badge {
       position: absolute;
-      left: 10px;
-      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: max(12px, env(safe-area-inset-bottom));
       z-index: 35;
-      padding: 5px 10px;
+      padding: 4px 12px;
       border-radius: 999px;
-      background: #fffaf0;
-      color: #432d1c;
-      font-size: 11px;
+      background: rgba(253, 246, 230, 0.92);
+      color: #442c1a;
+      font-size: 10.5px;
       font-weight: 800;
-      border: 2px solid #432d1c;
-      box-shadow: 0 2px 0 #432d1c;
+      border: 1.8px solid #442c1a;
+      box-shadow: 0 2px 3px rgba(68, 44, 26, 0.24);
       pointer-events: none;
-    }
-
-    .zoom-pill {
-      position: absolute;
-      right: 10px;
-      bottom: 10px;
-      z-index: 35;
-      display: flex;
-      align-items: center;
-      gap: 2px;
-      padding: 3px;
-      border-radius: 999px;
-      background: #fffaf0;
-      border: 2px solid #432d1c;
-      box-shadow: 0 2px 0 #432d1c;
-    }
-    .zoom-btn {
-      width: 24px;
-      height: 24px;
-      border-radius: 999px;
-      border: 1.5px solid #432d1c;
-      background: #f5c058;
-      color: #432d1c;
-      font-size: 15px;
-      font-weight: 900;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      padding: 0;
-      line-height: 1;
-    }
-    .zoom-btn:active { background: #e8aa38; }
-    .zoom-readout {
-      min-width: 38px;
-      text-align: center;
-      font-size: 11px;
-      font-weight: 900;
-      color: #432d1c;
-      font-variant-numeric: tabular-nums;
-      cursor: pointer;
-    }
-
-    /* Flat Cozy Bottom Toolbar */
-    .toolbar {
-      position: relative;
-      z-index: 40;
-      flex-shrink: 0;
-      background: #f5e2bf;
-      border-top: 2.5px solid #432d1c;
-      padding: 8px 12px max(10px, env(safe-area-inset-bottom));
-      display: flex;
-      align-items: center;
-      gap: 9px;
-    }
-    .tool-btn {
-      flex: 1;
-      padding: 7px 8px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      font-size: 12px;
-      font-weight: 900;
-    }
-    .tool-badge {
-      padding: 1px 6px;
-      border-radius: 999px;
-      font-size: 10px;
-      font-weight: 900;
-      border: 1.5px solid #432d1c;
+      white-space: nowrap;
     }
 
     /* Flying overlay & Sparkles */
@@ -428,12 +368,12 @@
       left: 50%;
       top: 170px;
       transform: translateX(-50%) translateY(-8px);
-      background: #432d1c;
+      background: rgba(74, 49, 29, 0.92);
       color: #fffaf0;
-      padding: 7px 15px;
+      padding: 6px 14px;
       border-radius: 999px;
-      border: 2px solid #fffaf0;
-      font-size: 12px;
+      border: 1.5px solid #f5e5c5;
+      font-size: 11.5px;
       font-weight: 800;
       opacity: 0;
       pointer-events: none;
@@ -457,13 +397,13 @@
     .tut-bubble {
       position: absolute;
       background: #fffdf5;
-      border: 2.5px solid #432d1c;
-      border-radius: 14px;
-      padding: 9px 16px;
-      font-size: 14px;
+      border: 2.2px solid #4a311d;
+      border-radius: 13px;
+      padding: 8px 14px;
+      font-size: 13.5px;
       font-weight: 800;
-      color: #432d1c;
-      box-shadow: 0 3px 0 #432d1c;
+      color: #4a311d;
+      box-shadow: 0 3px 0 #4a311d;
       white-space: nowrap;
       pointer-events: none;
       z-index: 82;
@@ -471,14 +411,14 @@
     .tut-bubble::before {
       content: '';
       position: absolute;
-      top: -8px;
+      top: -7px;
       left: var(--arrow-x, 50%);
       margin-left: -6px;
-      width: 12px;
-      height: 12px;
+      width: 11px;
+      height: 11px;
       background: #fffdf5;
-      border-left: 2.5px solid #432d1c;
-      border-top: 2.5px solid #432d1c;
+      border-left: 2.2px solid #4a311d;
+      border-top: 2.2px solid #4a311d;
       transform: rotate(45deg);
     }
     .tut-accent { color: #d67617; }
@@ -486,7 +426,7 @@
       pointer-events: auto;
       position: absolute;
       right: 12px;
-      bottom: 14px;
+      bottom: max(14px, env(safe-area-inset-bottom));
       z-index: 85;
       padding: 6px 13px;
       border-radius: 999px;
@@ -513,16 +453,16 @@
       width: 100%;
       max-width: 340px;
       background: #fffdf5;
-      border: 2.5px solid #432d1c;
+      border: 2.5px solid #4a311d;
       border-radius: 20px;
-      box-shadow: 0 6px 0 #432d1c, 0 20px 50px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 6px 0 #4a311d, 0 20px 50px rgba(0, 0, 0, 0.4);
       position: relative;
       text-align: center;
     }
     .cute-modal-banner {
       position: relative;
       background: #ffc24e;
-      border-bottom: 2.5px solid #432d1c;
+      border-bottom: 2.5px solid #4a311d;
       border-radius: 17px 17px 0 0;
       padding: 15px 16px 11px;
       display: flex;
@@ -537,12 +477,12 @@
       line-height: 1.1;
       paint-order: stroke fill;
       -webkit-text-stroke: 6px #ffffff;
-      filter: drop-shadow(0 3px 0 #432d1c);
+      filter: drop-shadow(0 3px 0 #4a311d);
     }
     .banner-star {
       position: absolute;
       font-size: 20px;
-      filter: drop-shadow(0 2px 0 #432d1c);
+      filter: drop-shadow(0 2px 0 #4a311d);
       animation: starTwinkle 1.8s ease-in-out infinite;
     }
     @keyframes starTwinkle {
@@ -616,8 +556,8 @@
       padding: 12px;
       border-radius: 12px;
       background: #ffc44d;
-      border: 2.5px solid #432d1c;
-      box-shadow: 0 4px 0 #c9861d, 0 6px 0 #432d1c;
+      border: 2.5px solid #4a311d;
+      box-shadow: 0 4px 0 #c9861d, 0 6px 0 #4a311d;
       color: #fff;
       font-size: 18px;
       font-weight: 900;
@@ -650,76 +590,44 @@
       text-decoration: underline;
     }
   </style>
-  <script type="module" crossorigin src="./chunks/index-BydEoVCr.js"></script>
+  <script type="module" crossorigin src="./chunks/index-DYZxoYCC.js"></script>
 </head>
 <body>
   <div id="gameShell" class="game-shell">
-    <!-- Top Sunny Header -->
-    <div class="header-bar">
-      <div class="header-left">
-        <button id="btnSound" title="开关音效" class="ink-btn icon-circle">
-          <svg id="iconSoundOn" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="#f5c058"/>
-            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-          </svg>
-          <svg id="iconSoundOff" class="hidden" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" fill="#d6c5b3"/>
-            <line x1="23" y1="9" x2="17" y2="15"/>
-            <line x1="17" y1="9" x2="23" y2="15"/>
-          </svg>
-        </button>
-        <button id="btnRestart" title="重新开始" class="ink-btn icon-circle">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 12a9 9 0 1 0 3-6.7L3 8"/>
-            <path d="M3 3v5h5"/>
-          </svg>
-        </button>
-      </div>
-      <div class="header-center">
-        <div id="levelTitle" class="header-title">我的书房</div>
-        <div id="levelSubtitle" class="header-sub">第 1 关 · 剩余 21 件</div>
-      </div>
-      <button id="btnLevelSwitch" class="ink-btn btn-next-lvl">下一关</button>
+    <!-- Full-Bleed 100% Height PixiJS Playfield -->
+    <div id="playfield" class="playfield">
+      <div id="panHintBadge" class="pan-hint-badge hidden">👈 左右拖动浏览大场景 👉</div>
     </div>
 
-    <!-- Full-Bleed Room Stage + Floating 3D Storage Bins & Tray -->
-    <div class="stage-wrap">
-      <!-- PixiJS v8 Playfield -->
-      <div id="playfield" class="playfield">
-        <div id="panHintBadge" class="pan-hint-badge hidden">👈 左右拖动浏览大场景 👉</div>
-        <div class="zoom-pill" id="zoomPill">
-          <button id="btnZoomOut" class="zoom-btn" title="缩小">−</button>
-          <span id="zoomReadout" class="zoom-readout" title="重置缩放">100%</span>
-          <button id="btnZoomIn" class="zoom-btn" title="放大">+</button>
+    <!-- Compact Frameless Floating HUD (100% Authentic Plan 1 Hand-Drawn Artwork!) -->
+    <div class="floating-hud">
+      <div class="top-nav-row">
+        <div class="nav-left">
+          <button id="btnSound" title="开关音效" class="ui-img-btn icon-circle">
+            <img id="iconSoundOn" src="./assets/ui/btn_sound.webp?v=ui2" alt="音效开" />
+            <img id="iconSoundOff" class="hidden" src="./assets/ui/btn_sound_off.webp?v=ui2" alt="音效关" />
+          </button>
+          <button id="btnRestart" title="重新开始" class="ui-img-btn icon-circle">
+            <img src="./assets/ui/btn_restart.webp?v=ui2" alt="重新开始" />
+          </button>
         </div>
+
+        <div class="kraft-ribbon">
+          <img class="kraft-ribbon-img" src="./assets/ui/title_ribbon.webp?v=ui2" alt="" />
+          <span id="levelTitle" class="ribbon-title">我的书桌 · 第1关</span>
+        </div>
+
+        <button id="btnLevelSwitch" title="下一关" class="ui-img-btn btn-next-lvl">
+          <img src="./assets/ui/btn_next.webp?v=ui2" alt="下一关" />
+        </button>
       </div>
 
-      <!-- Floating Top 3D Open-Top Storage Bins + Gray Staging Tray -->
-      <div class="floating-hud">
-        <div id="boxesRow" class="boxes-row"></div>
-        <div id="trayContainer" class="tray-container"></div>
-      </div>
-
-      <!-- Toast -->
-      <div id="toast" class="toast-pill"></div>
+      <div id="boxesRow" class="boxes-row"></div>
+      <div id="trayContainer" class="tray-container"></div>
     </div>
 
-    <!-- Bottom Helper Toolbar -->
-    <div class="toolbar">
-      <button id="btnUndo" class="ink-btn tool-btn" style="background:#fffaf0;color:#432d1c;">
-        <span>↩️</span><span>撤回</span>
-        <span id="undoCount" class="tool-badge" style="background:#f5c058;color:#432d1c;">3</span>
-      </button>
-      <button id="btnHint" class="ink-btn tool-btn" style="background:#e6f9f0;color:#205742;">
-        <span>✨</span><span>提示</span>
-        <span id="hintCount" class="tool-badge" style="background:#7ad8b4;color:#174232;">5</span>
-      </button>
-      <button id="btnMagnet" class="ink-btn tool-btn" style="background:#ffeedb;color:#7a3b12;">
-        <span>🧲</span><span>自动收</span>
-        <span id="magnetCount" class="tool-badge" style="background:#f38f48;color:#fff;">2</span>
-      </button>
-    </div>
+    <!-- Toast -->
+    <div id="toast" class="toast-pill"></div>
 
     <!-- Level 1 Dual-Spotlight Tutorial -->
     <div id="tutorialOverlay" class="tut-overlay hidden">
@@ -741,8 +649,8 @@
       <div id="tutBubbleTop" class="tut-bubble"></div>
       <div id="tutBubbleBottom" class="tut-bubble"></div>
       <div id="tutArrow" class="tut-arrow">
-        <svg width="34" height="38" viewBox="0 0 34 38">
-          <path d="M12 4 H22 V19 H30 L17 34 L4 19 H12 Z" fill="#fffdf8" stroke="#432d1c" stroke-width="3" stroke-linejoin="round"/>
+        <svg width="32" height="36" viewBox="0 0 34 38">
+          <path d="M12 4 H22 V19 H30 L17 34 L4 19 H12 Z" fill="#fffdf8" stroke="#4a311d" stroke-width="3" stroke-linejoin="round"/>
         </svg>
       </div>
       <button id="btnSkipTut" class="btn-skip-tut">跳过引导</button>
@@ -759,17 +667,17 @@
             双指可以放大和缩小场景屏幕，单指可左右拖动
           </div>
           <div class="modal-preview-frame">
-            <img src="./assets/backgrounds/bed_topdown.webp?v=td1" alt="房间预览" />
+            <img src="./assets/backgrounds/bed_topdown.webp?v=td2" alt="房间预览" />
             <div class="hand-gesture-layer">
               <svg class="hand-pinch-svg" viewBox="0 0 160 160">
                 <path d="M58 34 Q42 46 36 66" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
-                <path d="M58 34 Q42 46 36 66" fill="none" stroke="#432d1c" stroke-width="3" stroke-linecap="round"/>
-                <polygon points="36,72 28,58 44,61" fill="#fff" stroke="#432d1c" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M58 34 Q42 46 36 66" fill="none" stroke="#4a311d" stroke-width="3" stroke-linecap="round"/>
+                <polygon points="36,72 28,58 44,61" fill="#fff" stroke="#4a311d" stroke-width="2.5" stroke-linejoin="round"/>
                 <path d="M32 118 Q30 98 38 82" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
-                <path d="M32 118 Q30 98 38 82" fill="none" stroke="#432d1c" stroke-width="3" stroke-linecap="round"/>
-                <polygon points="40,76 30,86 45,89" fill="#fff" stroke="#432d1c" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M32 118 Q30 98 38 82" fill="none" stroke="#4a311d" stroke-width="3" stroke-linecap="round"/>
+                <polygon points="40,76 30,86 45,89" fill="#fff" stroke="#4a311d" stroke-width="2.5" stroke-linejoin="round"/>
                 <path d="M84 52 C80 42, 92 38, 98 48 L114 78 C120 74, 128 80, 125 90 L132 108 C136 122, 124 138, 108 136 L82 128 C70 124, 62 112, 62 98 C62 88, 70 84, 76 92 L82 100 L72 64 C69 54, 80 48, 84 52 Z"
-                      fill="#ffffff" stroke="#432d1c" stroke-width="3.5" stroke-linejoin="round"/>
+                      fill="#ffffff" stroke="#4a311d" stroke-width="3.5" stroke-linejoin="round"/>
               </svg>
             </div>
           </div>
@@ -788,7 +696,7 @@
         </div>
         <div class="cute-modal-body">
           <div id="modalRoomWrap" class="modal-preview-frame">
-            <img id="modalRoomPreview" src="./assets/backgrounds/desk_topdown.webp?v=td1" alt="整理后的桌面" />
+            <img id="modalRoomPreview" src="./assets/backgrounds/desk_topdown.webp?v=td2" alt="整理后的桌面" />
           </div>
           <div id="modalWinInfo">
             <div class="time-label">本次整理耗时</div>
