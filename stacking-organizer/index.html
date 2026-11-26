@@ -45,7 +45,7 @@
       }
     }
 
-    /* Unified Flat Hand-Drawn Comic Ink Button (matching reference screenshots 100%) */
+    /* Unified Flat Hand-Drawn Comic Ink Button */
     .ink-btn {
       border: 2.5px solid #432d1c;
       box-shadow: 0 3px 0 #432d1c;
@@ -62,10 +62,10 @@
       cursor: not-allowed;
     }
 
-    /* Flat Sunny Golden Header (matching reference screenshot) */
+    /* Flat Sunny Golden Header */
     .header-bar {
       position: relative;
-      z-index: 30;
+      z-index: 40;
       flex-shrink: 0;
       display: flex;
       align-items: center;
@@ -109,63 +109,112 @@
       font-weight: 800;
     }
 
-    /* Unified Flat Hand-Drawn Storage Bins */
-    .boxes-wrap {
+    /* Full-bleed Room Stage Wrapper (boxes & tray float cleanly over the upper wall!) */
+    .stage-wrap {
       position: relative;
-      z-index: 30;
-      flex-shrink: 0;
-      padding: 10px 12px 7px;
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: hidden;
       background: #f7ead1;
     }
-    .boxes-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; align-items: stretch; }
-    .box-card { position: relative; transition: transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease; }
 
-    .box-active {
+    /* PixiJS Playfield fills entire stage-wrap */
+    .playfield {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      touch-action: none;
+    }
+    .playfield canvas {
+      display: block;
+      width: 100% !important;
+      height: 100% !important;
+      touch-action: none;
+    }
+
+    /* Floating Top HUD (3D Open-Top Storage Bins + Gray Staging Tray) */
+    .floating-hud {
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      right: 10px;
+      z-index: 30;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .boxes-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      align-items: stretch;
+      pointer-events: none;
+    }
+    .box-card {
+      position: relative;
+      pointer-events: auto;
+      transition: transform 0.26s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease;
+    }
+
+    /* True 3D Open-Top Trapezoid Storage Bin */
+    .bin-active, .bin-btn, .bin-empty {
       position: relative;
       width: 100%;
-      height: 82px;
-      border-radius: 10px;
-      background: #fdf9ef;
-      border: 2.5px solid #432d1c;
-      box-shadow: 0 3px 0 #432d1c;
+      height: 86px;
+      display: block;
+      padding: 0;
+      margin: 0;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+    }
+    .bin-btn {
+      cursor: pointer;
+      transition: transform 0.08s ease;
+    }
+    .bin-btn:active {
+      transform: translateY(2px);
+    }
+    .bin-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      filter: drop-shadow(0 3px 2px rgba(67, 45, 28, 0.18));
+    }
+    .bin-content {
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      top: 26px;
+      bottom: 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
-      padding-bottom: 6px;
-    }
-    .box-rim {
-      width: 100%;
-      height: 14px;
-      background: #e5ded2;
-      border-bottom: 2px solid #432d1c;
-      border-radius: 7px 7px 0 0;
-      display: flex;
-      align-items: center;
       justify-content: center;
+      pointer-events: none;
     }
-    .box-rim-handle {
-      width: 34px;
-      height: 4px;
-      background: #c7beae;
-      border-radius: 999px;
+    .bin-content-locked {
+      gap: 4px;
+      top: 27px;
+      bottom: 8px;
     }
-    .box-quick {
-      position: absolute;
-      top: -8px;
-      left: -5px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: #ea8848;
-      border: 2px solid #432d1c;
-      color: #fff;
-      font-size: 9px;
+    .box-name {
+      font-size: 16px;
       font-weight: 900;
-      cursor: pointer;
-      box-shadow: 0 2px 0 #432d1c;
+      color: #432d1c;
+      line-height: 1.1;
+      margin-top: -2px;
     }
-    .box-name { font-size: 16px; font-weight: 900; color: #432d1c; line-height: 1; margin-top: 2px; }
-    .box-badge {
+    /* Progress pill straddling bottom rim of the storage bin (exact screenshot detail!) */
+    .box-badge-straddle {
+      position: absolute;
+      left: 50%;
+      bottom: -5px;
+      transform: translateX(-50%);
       padding: 1px 12px;
       border-radius: 6px;
       border: 2px solid #432d1c;
@@ -174,53 +223,37 @@
       color: #2b2016;
       font-variant-numeric: tabular-nums;
       line-height: 1.25;
+      white-space: nowrap;
+      z-index: 3;
+      box-shadow: 0 1px 0 rgba(67, 45, 28, 0.25);
     }
-
-    .box-locked {
-      width: 100%;
-      height: 82px;
-      border-radius: 10px;
-      background: #252220;
-      color: #f4e9dc;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      padding: 0 8px 4px;
-    }
-    .box-locked-rim {
-      width: calc(100% + 16px);
-      height: 11px;
-      background: #35312e;
-      border-radius: 7px 7px 0 0;
-      margin-top: -5px;
-      margin-bottom: 2px;
-      border-bottom: 2px solid #181615;
-    }
-    .box-locked-title { font-size: 12px; font-weight: 800; color: #b7afa6; }
-    .box-locked-pill {
-      font-size: 10px;
-      font-weight: 800;
-      padding: 2px 9px;
+    .box-quick {
+      position: absolute;
+      top: 6px;
+      left: -2px;
+      padding: 1.5px 7px;
       border-radius: 999px;
-      background: #3d3834;
-      color: #ffd886;
+      background: #ea8848;
+      border: 2px solid #432d1c;
+      color: #fff;
+      font-size: 9px;
+      font-weight: 900;
+      cursor: pointer;
+      z-index: 4;
+      box-shadow: 0 1.5px 0 #432d1c;
     }
-
-    .box-empty {
-      width: 100%;
-      height: 82px;
-      border-radius: 10px;
-      border: 2px dashed #b99c77;
-      background: rgba(255, 250, 238, 0.55);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #9e7f58;
+    .bin-locked-title {
       font-size: 12px;
       font-weight: 800;
+      color: #b7afa6;
+    }
+    .bin-locked-pill {
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: #3a3532;
+      color: #ffd886;
     }
 
     .box-pop { animation: boxPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
@@ -241,29 +274,23 @@
       100% { transform: translateY(0) scale(1); opacity: 1; }
     }
 
-    /* Flat Light-Gray Staging Tray Bar (matching reference screenshot!) */
-    .tray-wrap {
-      position: relative;
-      z-index: 30;
-      flex-shrink: 0;
-      padding: 0 12px 9px;
-      background: #f7ead1;
-      border-bottom: 2.5px solid #432d1c;
-    }
+    /* Flat Light-Gray Staging Tray Bar floating directly under the 3 bins */
     .tray-container {
+      pointer-events: auto;
       background: #d2cec6;
       border: 2.5px solid #432d1c;
-      border-radius: 10px;
+      border-radius: 9px;
       padding: 6px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 6px;
+      box-shadow: 0 3px 0 rgba(67, 45, 28, 0.22);
     }
     .tray-slot {
       flex: 1;
-      height: 46px;
-      border-radius: 7px;
+      height: 44px;
+      border-radius: 6px;
       background: #fffaf0;
       border: 2px solid #432d1c;
       display: flex;
@@ -271,11 +298,11 @@
       justify-content: center;
       overflow: hidden;
     }
-    .tray-slot img { width: 38px; height: 38px; object-fit: contain; pointer-events: none; }
+    .tray-slot img { width: 36px; height: 36px; object-fit: contain; pointer-events: none; }
     .tray-slot-locked {
       flex: 1;
-      height: 46px;
-      border-radius: 7px;
+      height: 44px;
+      border-radius: 6px;
       background: #2b2826;
       border: 2px solid #432d1c;
       display: flex;
@@ -297,23 +324,7 @@
       80% { transform: translateX(4px); }
     }
 
-    /* PixiJS Playfield */
-    .playfield {
-      position: relative;
-      flex: 1 1 auto;
-      min-height: 0;
-      overflow: hidden;
-      background: #f7ead1;
-      touch-action: none;
-    }
-    .playfield canvas {
-      display: block;
-      width: 100% !important;
-      height: 100% !important;
-      touch-action: none;
-    }
-
-    /* Cartoon Cream Pan & Zoom Pills (unified with comic style!) */
+    /* Cartoon Cream Pan & Zoom Pills */
     .pan-hint-badge {
       position: absolute;
       left: 10px;
@@ -374,7 +385,7 @@
     /* Flat Cozy Bottom Toolbar */
     .toolbar {
       position: relative;
-      z-index: 30;
+      z-index: 40;
       flex-shrink: 0;
       background: #f5e2bf;
       border-top: 2.5px solid #432d1c;
@@ -415,7 +426,7 @@
     .toast-pill {
       position: absolute;
       left: 50%;
-      top: 198px;
+      top: 170px;
       transform: translateX(-50%) translateY(-8px);
       background: #432d1c;
       color: #fffaf0;
@@ -487,7 +498,7 @@
       cursor: pointer;
     }
 
-    /* Adorable Flat Comic Modals (Matching Screenshots 1 & 2) */
+    /* Adorable Flat Comic Modals */
     .cute-modal-overlay {
       position: absolute;
       inset: 0;
@@ -550,7 +561,7 @@
       border: 2.5px solid #e0c7a3;
       background: #f5e6cc;
     }
-    .modal-preview-frame img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .modal-preview-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; }
     .hand-gesture-layer {
       position: absolute;
       inset: 0;
@@ -639,7 +650,7 @@
       text-decoration: underline;
     }
   </style>
-  <script type="module" crossorigin src="./chunks/index-DYzRs8pg.js"></script>
+  <script type="module" crossorigin src="./chunks/index-CZ_r0E6_.js"></script>
 </head>
 <body>
   <div id="gameShell" class="game-shell">
@@ -672,27 +683,26 @@
       <button id="btnLevelSwitch" class="ink-btn btn-next-lvl">下一关</button>
     </div>
 
-    <!-- Top Storage Bins -->
-    <div class="boxes-wrap">
-      <div id="boxesRow" class="boxes-row"></div>
-    </div>
-
-    <!-- Temporary Staging Tray -->
-    <div class="tray-wrap">
-      <div id="trayContainer" class="tray-container"></div>
-    </div>
-
-    <!-- Toast -->
-    <div id="toast" class="toast-pill"></div>
-
-    <!-- PixiJS v8 WebGL2 Playfield -->
-    <div id="playfield" class="playfield">
-      <div id="panHintBadge" class="pan-hint-badge hidden">👈 左右拖动浏览大场景 👉</div>
-      <div class="zoom-pill" id="zoomPill">
-        <button id="btnZoomOut" class="zoom-btn" title="缩小">−</button>
-        <span id="zoomReadout" class="zoom-readout" title="重置缩放">100%</span>
-        <button id="btnZoomIn" class="zoom-btn" title="放大">+</button>
+    <!-- Full-Bleed Room Stage + Floating 3D Storage Bins & Tray -->
+    <div class="stage-wrap">
+      <!-- PixiJS v8 Playfield -->
+      <div id="playfield" class="playfield">
+        <div id="panHintBadge" class="pan-hint-badge hidden">👈 左右拖动浏览大场景 👉</div>
+        <div class="zoom-pill" id="zoomPill">
+          <button id="btnZoomOut" class="zoom-btn" title="缩小">−</button>
+          <span id="zoomReadout" class="zoom-readout" title="重置缩放">100%</span>
+          <button id="btnZoomIn" class="zoom-btn" title="放大">+</button>
+        </div>
       </div>
+
+      <!-- Floating Top 3D Open-Top Storage Bins + Gray Staging Tray -->
+      <div class="floating-hud">
+        <div id="boxesRow" class="boxes-row"></div>
+        <div id="trayContainer" class="tray-container"></div>
+      </div>
+
+      <!-- Toast -->
+      <div id="toast" class="toast-pill"></div>
     </div>
 
     <!-- Bottom Helper Toolbar -->
@@ -749,7 +759,7 @@
             双指可以放大和缩小场景屏幕，单指可左右拖动
           </div>
           <div class="modal-preview-frame">
-            <img src="./assets/backgrounds/bedroom.webp?v=cute3" alt="房间预览" />
+            <img src="./assets/backgrounds/bedroom.webp?v=cute4" alt="房间预览" />
             <div class="hand-gesture-layer">
               <svg class="hand-pinch-svg" viewBox="0 0 160 160">
                 <path d="M58 34 Q42 46 36 66" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round"/>
@@ -778,7 +788,7 @@
         </div>
         <div class="cute-modal-body">
           <div id="modalRoomWrap" class="modal-preview-frame">
-            <img id="modalRoomPreview" src="./assets/backgrounds/study_room.webp?v=cute3" alt="整理后的房间" />
+            <img id="modalRoomPreview" src="./assets/backgrounds/study_room.webp?v=cute4" alt="整理后的房间" />
           </div>
           <div id="modalWinInfo">
             <div class="time-label">本次整理耗时</div>
