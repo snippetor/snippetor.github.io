@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>收纳日记 · Tidy Diary</title>
+  <link rel="preload" as="image" href="./assets/backgrounds/home_wood.webp?v=ui4" />
+  <link rel="preload" as="image" href="./assets/ui/home_logo.webp?v=ui3" />
   <style>
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
     html, body {
@@ -1340,18 +1342,138 @@
       transition: transform 0.08s ease;
     }
     .btn-fail-restart:active { transform: translateY(2px); }
+
+    /* ===== Loading Screen (Sunlit Oak Wood + Logo + Cozy Progress Bar) ===== */
+    .loading-screen {
+      position: absolute;
+      inset: 0;
+      z-index: 120;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding: max(20px, env(safe-area-inset-top)) 22px max(52px, env(safe-area-inset-bottom));
+      background: #cf965c url('./assets/backgrounds/home_wood.webp?v=ui4') center / cover no-repeat;
+      opacity: 1;
+      transition: opacity 0.36s ease;
+    }
+    .loading-screen.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .loading-screen.hidden {
+      display: none !important;
+    }
+    .loading-progress-wrap {
+      width: min(76%, 268px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 11px;
+    }
+    .loading-bar-track {
+      width: 100%;
+      height: 24px;
+      padding: 3px;
+      border-radius: 999px;
+      background: #fff9ec;
+      border: 2.4px solid #442c1a;
+      box-shadow:
+        inset 0 2px 3px rgba(68, 44, 26, 0.16),
+        0 3.5px 0 #c9a778,
+        0 5.5px 0 #442c1a,
+        0 9px 14px rgba(68, 44, 26, 0.2);
+      overflow: hidden;
+    }
+    .loading-bar-fill {
+      position: relative;
+      height: 100%;
+      width: 0%;
+      min-width: 0;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #9ce6d7 0%, #57cbbd 100%);
+      box-shadow: inset 0 -1.5px 0 rgba(36, 114, 104, 0.28);
+      overflow: hidden;
+      transition: width 0.1s linear;
+    }
+    .loading-bar-fill::before {
+      content: '';
+      position: absolute;
+      left: 6px;
+      right: 6px;
+      top: 2px;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.55);
+      pointer-events: none;
+    }
+    .loading-bar-fill::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.22) 0px,
+        rgba(255, 255, 255, 0.22) 8px,
+        transparent 8px,
+        transparent 16px
+      );
+      background-size: 22.6px 22.6px;
+      animation: loadingStripeMove 0.75s linear infinite;
+      pointer-events: none;
+    }
+    @keyframes loadingStripeMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 22.6px 0; }
+    }
+    .loading-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 13px;
+      border-radius: 999px;
+      background: rgba(255, 249, 236, 0.82);
+      border: 1.8px solid rgba(68, 44, 26, 0.78);
+      box-shadow: 0 2px 4px rgba(68, 44, 26, 0.14);
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #442c1a;
+      letter-spacing: 0.5px;
+    }
+    .loading-pct {
+      font-variant-numeric: tabular-nums;
+      color: #2f8b81;
+      font-weight: 900;
+      min-width: 34px;
+      text-align: right;
+    }
   </style>
-  <script type="module" crossorigin src="./chunks/index-2awQJYGB.js"></script>
+  <script type="module" crossorigin src="./chunks/index-X_D2Hei1.js"></script>
 </head>
 <body>
   <div id="gameShell" class="game-shell">
+    <!-- Loading Screen (Shown Until All Assets Finish Loading) -->
+    <div id="loadingScreen" class="loading-screen" role="status" aria-live="polite">
+      <img class="home-logo-img" src="./assets/ui/home_logo.webp?v=ui3" alt="收纳日记 Tidy Diary" />
+      <div class="loading-progress-wrap">
+        <div class="loading-bar-track">
+          <div id="loadingBarFill" class="loading-bar-fill"></div>
+        </div>
+        <div class="loading-meta">
+          <span id="loadingTip">整理小屋准备中...</span>
+          <span id="loadingPct" class="loading-pct">0%</span>
+        </div>
+      </div>
+    </div>
+
     <!-- Full-Bleed 100% Height PixiJS Playfield -->
     <div id="playfield" class="playfield">
       <div id="panHintBadge" class="pan-hint-badge hidden">👈 左右拖动浏览大场景 👉</div>
     </div>
 
     <!-- Compact Frameless Floating HUD (100% Authentic Plan 1 Hand-Drawn Artwork!) -->
-    <div id="floatingHud" class="floating-hud">
+    <div id="floatingHud" class="floating-hud hidden">
       <div class="top-nav-row">
         <div class="nav-left">
           <button id="btnSettings" title="设置" class="gear-btn" aria-label="设置" style="width:38px;height:38px;">
@@ -1374,7 +1496,7 @@
     </div>
 
     <!-- Home Screen (收纳日记 · Tidy Diary) -->
-    <div id="homeScreen" class="home-screen">
+    <div id="homeScreen" class="home-screen hidden">
       <div class="home-top-bar">
         <div class="home-top-left">
           <button id="btnHomeSettings" title="设置" class="gear-btn" aria-label="设置">
