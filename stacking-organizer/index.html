@@ -501,7 +501,23 @@
       border: 2.5px solid #e0c7a3;
       background: #f5e6cc;
     }
-    .modal-preview-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center bottom; display: block; }
+    .modal-preview-frame > img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+      display: block;
+    }
+    .zoom-guide-bg {
+      object-position: center 56% !important;
+      transform-origin: 48% 52%;
+      animation: previewRoomZoom 2s ease-in-out infinite;
+      will-change: transform;
+    }
+    @keyframes previewRoomZoom {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.22); }
+    }
     .hand-gesture-layer {
       position: absolute;
       inset: 0;
@@ -510,42 +526,67 @@
       justify-content: center;
       pointer-events: none;
     }
+    .hand-pinch-stage {
+      position: relative;
+      width: 176px;
+      height: 176px;
+    }
     .hand-pinch-svg {
-      width: 168px;
-      height: 168px;
-      filter: drop-shadow(0 4px 5px rgba(67, 45, 28, 0.28));
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 3px 4px rgba(67, 45, 28, 0.28));
       overflow: visible;
     }
-    .pinch-hand-group {
-      transform-origin: 96px 104px;
-      animation: handPinchDemo 1.8s ease-in-out infinite;
+    .pinch-hand-img {
+      position: absolute;
+      right: 4px;
+      bottom: 4px;
+      width: 126px;
+      height: 133px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 5px rgba(67, 45, 28, 0.28));
+      pointer-events: none;
+      transform-origin: 82% 84%;
+      animation: handPinchDemo 2s ease-in-out infinite;
+      will-change: transform;
     }
     .pinch-arrow-top {
-      animation: pinchArrowTop 1.8s ease-in-out infinite;
+      animation: pinchArrowTop 2s ease-in-out infinite;
     }
     .pinch-arrow-bot {
-      animation: pinchArrowBot 1.8s ease-in-out infinite;
+      animation: pinchArrowBot 2s ease-in-out infinite;
     }
-    .pinch-ripple {
+    .pinch-ripple-top {
       transform-box: fill-box;
       transform-origin: center;
-      animation: pinchRipple 1.8s ease-in-out infinite;
+      animation: pinchRippleTop 2s ease-in-out infinite;
+    }
+    .pinch-ripple-bot {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: pinchRippleBot 2s ease-in-out infinite;
     }
     @keyframes handPinchDemo {
-      0%, 100% { transform: translate(3px, 3px) scale(0.95); }
-      50% { transform: translate(-2px, -2px) scale(1.03); }
+      0%, 100% { transform: scale(0.95); }
+      50% { transform: scale(1.06); }
     }
     @keyframes pinchArrowTop {
-      0%, 100% { transform: translate(4px, 4px); opacity: 0.85; }
-      50% { transform: translate(-5px, -5px); opacity: 1; }
+      0%, 100% { transform: translate(3px, 3px); opacity: 0.85; }
+      50% { transform: translate(-7px, -7px); opacity: 1; }
     }
     @keyframes pinchArrowBot {
-      0%, 100% { transform: translate(-4px, -4px); opacity: 0.85; }
-      50% { transform: translate(5px, 5px); opacity: 1; }
+      0%, 100% { transform: translate(3px, -3px); opacity: 0.85; }
+      50% { transform: translate(-7px, 7px); opacity: 1; }
     }
-    @keyframes pinchRipple {
-      0%, 100% { transform: scale(0.85); opacity: 0.45; }
-      50% { transform: scale(1.22); opacity: 0.9; }
+    @keyframes pinchRippleTop {
+      0%, 100% { transform: translate(2px, 2px) scale(0.82); opacity: 0.45; }
+      50% { transform: translate(-4px, -4px) scale(1.18); opacity: 0.92; }
+    }
+    @keyframes pinchRippleBot {
+      0%, 100% { transform: translate(2px, -2px) scale(0.82); opacity: 0.45; }
+      50% { transform: translate(-4px, 4px) scale(1.18); opacity: 0.92; }
     }
     .time-label { font-size: 13px; font-weight: 800; color: #7c5c3e; margin-bottom: 6px; }
     .time-pill {
@@ -694,29 +735,25 @@
             双指可以放大和缩小场景屏幕，单指可左右拖动
           </div>
           <div class="modal-preview-frame">
-            <img src="./assets/backgrounds/bed_topdown.webp?v=td6" alt="房间预览" style="object-position: center 56%;" />
+            <img class="zoom-guide-bg" src="./assets/backgrounds/bed_topdown.webp?v=td6" alt="房间预览" />
             <div class="hand-gesture-layer">
-              <div style="position:relative;width:164px;height:164px;">
-                <!-- Bidirectional animated pinch-zoom arrows aligned with index tip (top-left) and thumb tip (bottom-left) -->
-                <svg class="hand-pinch-svg" viewBox="0 0 180 180" style="position:absolute;inset:0;width:100%;height:100%;" aria-hidden="true">
+              <div class="hand-pinch-stage">
+                <!-- Bidirectional 45° pinch-zoom arrows cleanly outside fingertips -->
+                <svg class="hand-pinch-svg" viewBox="0 0 180 180" aria-hidden="true">
+                  <circle class="pinch-ripple-top" cx="72" cy="54" r="11" fill="rgba(255,253,245,0.46)" stroke="#ffffff" stroke-width="2"/>
+                  <circle class="pinch-ripple-bot" cx="60" cy="112" r="10.5" fill="rgba(255,253,245,0.46)" stroke="#ffffff" stroke-width="2"/>
                   <g class="pinch-arrow-top">
-                    <line x1="60" y1="42" x2="32" y2="14" stroke="#fffdf8" stroke-width="8" stroke-linecap="round"/>
-                    <line x1="60" y1="42" x2="32" y2="14" stroke="#442c1a" stroke-width="3.4" stroke-linecap="round"/>
+                    <line x1="58" y1="40" x2="32" y2="14" stroke="#fffdf8" stroke-width="8" stroke-linecap="round"/>
+                    <line x1="58" y1="40" x2="32" y2="14" stroke="#442c1a" stroke-width="3.4" stroke-linecap="round"/>
                     <path d="M30 30 L28 10 L48 12 Z" fill="#fffdf8" stroke="#442c1a" stroke-width="2.6" stroke-linejoin="round"/>
                   </g>
                   <g class="pinch-arrow-bot">
-                    <line x1="48" y1="114" x2="20" y2="142" stroke="#fffdf8" stroke-width="8" stroke-linecap="round"/>
-                    <line x1="48" y1="114" x2="20" y2="142" stroke="#442c1a" stroke-width="3.4" stroke-linecap="round"/>
-                    <path d="M18 126 L16 146 L36 144 Z" fill="#fffdf8" stroke="#442c1a" stroke-width="2.6" stroke-linejoin="round"/>
+                    <line x1="46" y1="124" x2="20" y2="150" stroke="#fffdf8" stroke-width="8" stroke-linecap="round"/>
+                    <line x1="46" y1="124" x2="20" y2="150" stroke="#442c1a" stroke-width="3.4" stroke-linecap="round"/>
+                    <path d="M18 134 L16 154 L36 152 Z" fill="#fffdf8" stroke="#442c1a" stroke-width="2.6" stroke-linejoin="round"/>
                   </g>
-                  <circle class="pinch-ripple" cx="68" cy="50" r="12" fill="rgba(255,253,245,0.48)" stroke="#ffffff" stroke-width="2"/>
-                  <circle class="pinch-ripple" cx="56" cy="108" r="11" fill="rgba(255,253,245,0.48)" stroke="#ffffff" stroke-width="2"/>
                 </svg>
-                <!-- Authentic hand-drawn cartoon 5-finger pinch-zoom hand -->
-                <img class="pinch-hand-group"
-                     src="./assets/ui/hand_pinch.webp?v=ui3"
-                     alt="双指缩放手势"
-                     style="position:absolute;right:0;bottom:2px;width:128px;height:135px;object-fit:contain;filter:drop-shadow(0 4px 5px rgba(67,45,28,0.28));pointer-events:none;" />
+                <img class="pinch-hand-img" src="./assets/ui/hand_pinch.webp?v=ui3" alt="双指缩放手势" />
               </div>
             </div>
           </div>
