@@ -219,18 +219,58 @@
       font-variant-numeric: tabular-nums;
       line-height: 1.12;
     }
-    /* Hitbox aligned directly over the real painted peach "收1件" corner tape! */
+    /* Ad-triggered "装满 📹" pill badge on top-left rim of active box (matching reference!) */
     .box-quick {
       position: absolute;
-      top: 38%;
-      right: 0;
-      width: 36%;
-      height: 28%;
-      background: transparent;
-      border: none;
-      padding: 0;
+      top: 6%;
+      left: -3%;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #e79e66 0%, #d47f45 100%);
+      border: 1.8px solid #442c1a;
+      box-shadow: 0 2px 0 rgba(68, 44, 26, 0.28);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      color: #fffdf7;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.2px;
+      line-height: 1;
       cursor: pointer;
       z-index: 4;
+      font-family: inherit;
+      transition: transform 0.08s ease;
+    }
+    .box-quick:active { transform: scale(0.92); }
+    .box-quick svg {
+      width: 11px;
+      height: 11px;
+      flex-shrink: 0;
+    }
+    .bin-locked-label {
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      top: 50%;
+      bottom: 8%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 3px;
+      pointer-events: none;
+      color: #fff6e8;
+      font-size: 11.5px;
+      font-weight: 900;
+      text-shadow: 0 1.2px 0 rgba(56, 36, 20, 0.65);
+    }
+    .bin-locked-label svg {
+      width: 19px;
+      height: 15px;
+      filter: drop-shadow(0 1.5px 0 rgba(56, 36, 20, 0.55));
     }
     .bin-empty-inner {
       position: absolute;
@@ -264,7 +304,7 @@
       100% { transform: translateY(0) scale(1); opacity: 1; }
     }
 
-    /* Row 3: Compact Authentic Plan-1 Carved Oak 7-Slot Wooden Tray (7 equal-width wide slots: 5 cream + 2 locked) */
+    /* Row 3: Compact Authentic Plan-1 Carved Oak 7-Slot Wooden Tray (7 equal-width wide slots: 5 cream + 2 ad-locked) */
     .tray-container {
       position: relative;
       pointer-events: auto;
@@ -309,21 +349,31 @@
       border-radius: 3px;
       pointer-events: none;
     }
-    .tray-slot img.tray-item-img {
+    .tray-slot .tray-item-img {
       position: relative;
       z-index: 2;
       width: 82%;
       height: 82%;
       object-fit: contain;
+      display: block;
       pointer-events: none;
       filter: drop-shadow(0 1.5px 1.5px rgba(64, 38, 18, 0.3));
     }
     .tray-slot-locked {
       position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
       background: transparent;
       border: none;
       padding: 0;
+    }
+    .tray-slot-locked svg {
+      width: 22px;
+      height: 17px;
+      filter: drop-shadow(0 1.5px 0 rgba(56, 34, 18, 0.5));
+      pointer-events: none;
     }
     .tray-slot-locked:active { background: rgba(255, 236, 190, 0.18); border-radius: 4px; }
     .tray-shake { animation: trayShake 0.35s ease; }
@@ -1227,8 +1277,71 @@
       color: #fff;
       border-color: #276e68;
     }
+
+    /* ===== Fail Modal (Matching Reference Screenshot) ===== */
+    .fail-modal-banner {
+      position: relative;
+      background: #e2d8c9;
+      border-bottom: 2px solid #cfc2ae;
+      border-radius: 17px 17px 0 0;
+      padding: 15px 16px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .fail-sticker-title {
+      font-size: 30px;
+      font-weight: 900;
+      color: #6b6763;
+      letter-spacing: 3px;
+      line-height: 1.1;
+      paint-order: stroke fill;
+      -webkit-text-stroke: 6.5px #ffffff;
+      filter: drop-shadow(0 3px 0 #55483c);
+    }
+    .fail-modal-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 10px 10px;
+    }
+    .btn-fail-slot {
+      width: 100%;
+      max-width: 244px;
+      height: 54px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #ffcf63 0%, #f5b335 100%);
+      border: 2.5px solid #4a311d;
+      box-shadow: 0 4.5px 0 #b87416, 0 6.5px 0 rgba(74, 49, 29, 0.32);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.08s ease;
+    }
+    .btn-fail-slot:active { transform: translateY(2px); }
+    .btn-fail-restart {
+      width: 100%;
+      max-width: 214px;
+      height: 54px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #6ee2d8 0%, #52cfc4 100%);
+      border: 2.5px solid #2b6e68;
+      box-shadow: 0 4.5px 0 #2d9188, 0 6.5px 0 rgba(58, 38, 18, 0.28);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.08s ease;
+    }
+    .btn-fail-restart:active { transform: translateY(2px); }
   </style>
-  <script type="module" crossorigin src="./chunks/index-lpbZ7GdI.js"></script>
+  <script type="module" crossorigin src="./chunks/index-Dsl9FiTl.js"></script>
 </head>
 <body>
   <div id="gameShell" class="game-shell">
@@ -1360,25 +1473,6 @@
                 <input id="sliderSfx" class="cute-range" type="range" min="0" max="100" value="100" aria-label="音效音量" />
               </div>
             </div>
-
-            <div class="settings-row">
-              <div class="settings-label-wrap">
-                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                  <rect x="7" y="4" width="10" height="16" rx="2.4" stroke="#9a7554" stroke-width="2.2" fill="#e8d3bc"/>
-                  <line x1="10.5" y1="17" x2="13.5" y2="17" stroke="#9a7554" stroke-width="2" stroke-linecap="round"/>
-                  <path d="M3.5 8.5L2.5 11.5L3.8 14.5" stroke="#9a7554" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M20.5 8.5L21.5 11.5L20.2 14.5" stroke="#9a7554" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <span>震动</span>
-              </div>
-              <button id="toggleVibrate" class="cute-toggle-btn is-on" type="button" role="switch" aria-checked="true" aria-label="开关震动">
-                <span class="cute-toggle-knob">
-                  <svg class="cute-toggle-check" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M5 12.5L10 17.5L19 7.5" stroke="#39b7ad" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </span>
-              </button>
-            </div>
           </div>
 
           <div class="settings-divider"></div>
@@ -1428,6 +1522,34 @@
         </div>
         <div class="cute-modal-body">
           <div id="levelListItems" class="level-list-items"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fail Modal (When Temporary Tray Slots Are Full) -->
+    <div id="failOverlay" class="cute-modal-overlay hidden">
+      <div class="cute-modal-card">
+        <div class="fail-modal-banner">
+          <span class="fail-sticker-title">失败</span>
+          <button id="btnFailClose" class="modal-close-x" type="button" aria-label="关闭">✕</button>
+        </div>
+        <div class="cute-modal-body">
+          <div class="fail-modal-actions">
+            <button id="btnFailExtraSlot" class="btn-fail-slot" type="button">
+              <span class="btn-outlined-txt">额外槽位</span>
+              <svg width="24" height="18" viewBox="0 0 28 20" aria-hidden="true">
+                <rect x="1.5" y="2" width="18" height="16" rx="4" fill="#9c6a27" stroke="#5d3b1e" stroke-width="1.6"/>
+                <polygon points="19.5,7.2 26.5,3.4 26.5,16.6 19.5,12.8" fill="#9c6a27" stroke="#5d3b1e" stroke-width="1.6" stroke-linejoin="round"/>
+                <polygon points="8.5,6.5 14.5,10 8.5,13.5" fill="#ffdf9a"/>
+              </svg>
+            </button>
+            <button id="btnFailRestart" class="btn-fail-restart" type="button">
+              <span class="btn-outlined-txt btn-outlined-txt-mint">重新开始</span>
+              <svg width="22" height="20" viewBox="0 0 36 34" aria-hidden="true">
+                <path d="M18 31 C18 31 4 22.4 4 12.2 C4 7.3 7.7 4 12.2 4 C15.0 4 17.0 5.5 18 7.4 C19.0 5.5 21.0 4 23.8 4 C28.3 4 32 7.3 32 12.2 C32 22.4 18 31 18 31 Z" fill="#f25757" stroke="#442c1a" stroke-width="2.6" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     </div>
