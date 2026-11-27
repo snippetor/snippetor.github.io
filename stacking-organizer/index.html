@@ -108,6 +108,7 @@
       display: flex;
       align-items: center;
       gap: 6px;
+      min-width: 72px;
       pointer-events: auto;
     }
     .icon-circle {
@@ -595,8 +596,661 @@
       cursor: pointer;
       text-decoration: underline;
     }
+
+    /* ===== Shared Cute Hand-Drawn Gear Button & Modal Close Button ===== */
+    .gear-btn {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: transparent;
+      padding: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 2.5px 0 rgba(74, 49, 29, 0.32));
+      transition: transform 0.1s ease;
+    }
+    .gear-btn:active { transform: scale(0.92) rotate(18deg); }
+    .gear-btn svg { width: 36px; height: 36px; display: block; }
+
+    .modal-close-x {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 34px;
+      height: 34px;
+      border: none;
+      background: transparent;
+      color: #fffdf5;
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 2px 0 rgba(120, 68, 18, 0.45));
+      transition: transform 0.08s ease;
+    }
+    .modal-close-x:active { transform: translateY(-50%) scale(0.9); }
+
+    /* ===== Home Screen (Warm Honey Star Background + Die-Cut Logo + Action Dock) ===== */
+    .home-screen {
+      position: absolute;
+      inset: 0;
+      z-index: 65;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: max(14px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
+      background-color: #ffbe55;
+      background-image:
+        radial-gradient(circle at 50% 42%, rgba(255, 240, 194, 0.34) 0%, rgba(255, 182, 68, 0) 64%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%23ffe39e' fill-opacity='0.34'%3E%3Cpath transform='translate(28,28) rotate(-14) scale(0.92)' d='M0,-18 C3,-18 6,-9 9,-7 C12,-5 21,-6 22,-3 C23,0 16,6 15,9 C14,12 17,20 14,22 C11,24 4,18 0,18 C-4,18 -11,24 -14,22 C-17,20 -14,12 -15,9 C-16,6 -23,0 -22,-3 C-21,-6 -12,-5 -9,-7 C-6,-9 -3,-18 0,-18Z'/%3E%3Cpath transform='translate(88,88) rotate(16) scale(0.86)' d='M0,-18 C3,-18 6,-9 9,-7 C12,-5 21,-6 22,-3 C23,0 16,6 15,9 C14,12 17,20 14,22 C11,24 4,18 0,18 C-4,18 -11,24 -14,22 C-17,20 -14,12 -15,9 C-16,6 -23,0 -22,-3 C-21,-6 -12,-5 -9,-7 C-6,-9 -3,-18 0,-18Z'/%3E%3C/g%3E%3C/svg%3E");
+      background-size: 100% 100%, 108px 108px;
+      transition: opacity 0.24s ease, transform 0.24s ease;
+    }
+    .home-screen.hidden {
+      display: none !important;
+    }
+
+    .home-top-area {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .home-top-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .stamina-pill {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px 4px 30px;
+      height: 28px;
+      border-radius: 999px;
+      border: none;
+      background: rgba(114, 77, 36, 0.56);
+      color: #fffdf5;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    }
+    .stamina-pill:active { transform: scale(0.96); }
+    .stamina-heart {
+      position: absolute;
+      left: -5px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 31px;
+      height: 31px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 2px 0 rgba(74, 49, 29, 0.35));
+    }
+    .stamina-heart svg { width: 31px; height: 31px; }
+    .stamina-heart-num {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -53%);
+      font-size: 13px;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 0 1px 0 #7b1e1e;
+    }
+
+    .home-share-btn {
+      position: relative;
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      background: linear-gradient(180deg, #ffe285 0%, #f8b83d 100%);
+      border: 2.2px solid #4a311d;
+      box-shadow: 0 3.5px 0 #a96c19, 0 5px 0 rgba(74, 49, 29, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 6px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.08s ease;
+    }
+    .home-share-btn:active { transform: translateY(2px) scale(0.96); }
+    .home-share-btn svg { width: 28px; height: 28px; }
+    .home-icon-caption {
+      position: absolute;
+      left: 50%;
+      bottom: -5px;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      font-size: 11.5px;
+      font-weight: 900;
+      color: #fffdf8;
+      paint-order: stroke fill;
+      -webkit-text-stroke: 3.4px #4a311d;
+      letter-spacing: 0.3px;
+    }
+
+    /* Center Die-Cut Cartoon Sticker Logo */
+    .home-logo-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 0 28px;
+    }
+    .home-logo-sticker {
+      position: relative;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 12px 18px 10px;
+      animation: homeLogoFloat 3.2s ease-in-out infinite;
+      /* True organic die-cut white sticker contour + crisp dark-brown outer outline + warm shadow */
+      filter:
+        drop-shadow(0 0 0 #fffdf9)
+        drop-shadow(5px 0 0 #fffdf9)
+        drop-shadow(-5px 0 0 #fffdf9)
+        drop-shadow(0 5px 0 #fffdf9)
+        drop-shadow(0 -5px 0 #fffdf9)
+        drop-shadow(4px 4px 0 #fffdf9)
+        drop-shadow(-4px 4px 0 #fffdf9)
+        drop-shadow(4px -4px 0 #fffdf9)
+        drop-shadow(-4px -4px 0 #fffdf9)
+        drop-shadow(0 0 2.6px #4a311d)
+        drop-shadow(0 5px 0 rgba(154, 88, 16, 0.34));
+    }
+    @keyframes homeLogoFloat {
+      0%, 100% { transform: translateY(0px) rotate(-0.8deg); }
+      50% { transform: translateY(-6px) rotate(0.8deg); }
+    }
+    .logo-row-top {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      line-height: 1;
+    }
+    .logo-row-bottom {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      line-height: 1;
+    }
+    .logo-word {
+      font-size: 56px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      color: #66e2ca;
+      paint-order: stroke fill;
+      -webkit-text-stroke: 7.5px #286e62;
+      filter: drop-shadow(0 3px 0 #1d5249);
+      line-height: 1.04;
+    }
+    .logo-word-sub {
+      font-size: 54px;
+      letter-spacing: 3px;
+    }
+    .logo-bear-box {
+      position: relative;
+      width: 64px;
+      height: 64px;
+      margin-bottom: 2px;
+      margin-left: 2px;
+      flex-shrink: 0;
+    }
+    .logo-bear-img {
+      position: absolute;
+      left: 50%;
+      top: -6px;
+      transform: translateX(-50%) rotate(4deg);
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      pointer-events: none;
+    }
+    .logo-box-front {
+      position: absolute;
+      left: 2px;
+      right: 2px;
+      bottom: 0;
+      width: 60px;
+      height: 36px;
+    }
+    .logo-star-icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 2.5px 0 rgba(74, 49, 29, 0.28));
+      animation: starTwinkle 2.2s ease-in-out infinite;
+    }
+    .logo-swoosh {
+      width: 204px;
+      height: 18px;
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* Home Bottom Action Dock */
+    .home-bottom-area {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding-bottom: 18px;
+    }
+    .home-actions-row {
+      width: 100%;
+      max-width: 318px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 14px;
+    }
+    .home-levels-wrap {
+      position: relative;
+      flex-shrink: 0;
+    }
+    .new-badge-bubble {
+      position: absolute;
+      left: 50%;
+      bottom: calc(100% + 10px);
+      transform: translateX(-42%);
+      background: #fffdf8;
+      border: 2.2px solid #4a311d;
+      border-radius: 12px;
+      padding: 5px 11px;
+      white-space: nowrap;
+      font-size: 13.5px;
+      font-weight: 900;
+      color: #d9721e;
+      box-shadow: 0 3px 0 rgba(74, 49, 29, 0.2);
+      animation: bubbleBob 1.9s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .new-badge-bubble::before {
+      content: '';
+      position: absolute;
+      left: 26px;
+      bottom: -8px;
+      border: 6px solid transparent;
+      border-top-color: #4a311d;
+      border-bottom: 0;
+    }
+    .new-badge-bubble::after {
+      content: '';
+      position: absolute;
+      left: 28px;
+      bottom: -5px;
+      border: 4px solid transparent;
+      border-top-color: #fffdf8;
+      border-bottom: 0;
+    }
+    @keyframes bubbleBob {
+      0%, 100% { transform: translateX(-42%) translateY(0); }
+      50% { transform: translateX(-42%) translateY(-4px); }
+    }
+
+    .home-levels-btn {
+      position: relative;
+      width: 68px;
+      height: 62px;
+      border-radius: 15px;
+      background: linear-gradient(180deg, #ffe285 0%, #f5b335 100%);
+      border: 2.5px solid #4a311d;
+      box-shadow: 0 5px 0 #a36514, 0 7px 0 rgba(74, 49, 29, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 10px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.08s ease;
+    }
+    .home-levels-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #a36514; }
+    .home-levels-btn svg { width: 38px; height: 34px; }
+    .home-levels-btn .home-icon-caption {
+      bottom: 3px;
+      font-size: 12.5px;
+      -webkit-text-stroke: 3.6px #4a311d;
+    }
+
+    .home-start-btn {
+      flex: 1;
+      max-width: 224px;
+      height: 62px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #62e3d8 0%, #44cbc0 100%);
+      border: 2.5px solid #2b6f6a;
+      box-shadow: 0 5px 0 #268981, 0 7px 0 rgba(58, 38, 18, 0.28);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.08s ease;
+    }
+    .home-start-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #268981; }
+    .home-start-text {
+      font-size: 24px;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: 1.5px;
+      paint-order: stroke fill;
+      -webkit-text-stroke: 4.5px #2e2017;
+      filter: drop-shadow(0 2px 0 rgba(46, 32, 23, 0.35));
+    }
+    .home-level-caption {
+      font-size: 19px;
+      font-weight: 900;
+      color: #fffdf5;
+      letter-spacing: 1px;
+      paint-order: stroke fill;
+      -webkit-text-stroke: 4px #c77b24;
+      filter: drop-shadow(0 2px 0 rgba(138, 78, 14, 0.3));
+    }
+    .home-player-id {
+      position: absolute;
+      left: 2px;
+      bottom: -14px;
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(114, 70, 22, 0.55);
+      letter-spacing: 0.4px;
+    }
+
+    /* ===== Settings Modal (Matching Cozy Reference Layout) ===== */
+    .settings-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding: 6px 4px 16px;
+    }
+    .settings-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .settings-label-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 82px;
+      color: #8a6443;
+      font-size: 17px;
+      font-weight: 800;
+    }
+    .settings-label-wrap svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+    .cute-slider-wrap {
+      position: relative;
+      flex: 1;
+      height: 30px;
+      display: flex;
+      align-items: center;
+    }
+    .cute-range {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 26px;
+      border-radius: 10px;
+      border: 2px solid #596964;
+      background: linear-gradient(
+        to right,
+        #4ed4ca 0%,
+        #4ed4ca var(--pct, 50%),
+        #d6d2c9 var(--pct, 50%),
+        #d6d2c9 100%
+      );
+      outline: none;
+      cursor: pointer;
+      margin: 0;
+    }
+    .cute-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 40px;
+      height: 30px;
+      border-radius: 10px;
+      background: #fff9ef;
+      border: 2px solid #596964;
+      box-shadow: 0 2px 0 rgba(74, 49, 29, 0.22);
+      cursor: pointer;
+    }
+    .cute-range::-moz-range-thumb {
+      width: 40px;
+      height: 30px;
+      border-radius: 10px;
+      background: #fff9ef;
+      border: 2px solid #596964;
+      box-shadow: 0 2px 0 rgba(74, 49, 29, 0.22);
+      cursor: pointer;
+    }
+
+    .cute-toggle-btn {
+      position: relative;
+      width: 98px;
+      height: 30px;
+      border-radius: 10px;
+      border: 2px solid #596964;
+      background: #d6d2c9;
+      padding: 0;
+      cursor: pointer;
+      transition: background 0.18s ease;
+      margin-right: auto;
+    }
+    .cute-toggle-btn.is-on {
+      background: #4ed4ca;
+    }
+    .cute-toggle-knob {
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      width: 42px;
+      height: 30px;
+      border-radius: 10px;
+      background: #fff9ef;
+      border: 2px solid #596964;
+      box-shadow: 0 2px 0 rgba(74, 49, 29, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .cute-toggle-btn.is-on .cute-toggle-knob {
+      transform: translateX(54px);
+    }
+    .cute-toggle-check {
+      width: 20px;
+      height: 20px;
+      opacity: 0;
+      transform: scale(0.6);
+      transition: opacity 0.15s ease, transform 0.15s ease;
+    }
+    .cute-toggle-btn.is-on .cute-toggle-check {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .settings-divider {
+      height: 1.5px;
+      background: #ede1cd;
+      margin: 4px 0 18px;
+    }
+    .settings-level-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .settings-top-btns {
+      display: flex;
+      gap: 12px;
+    }
+    .btn-amber-square {
+      width: 68px;
+      height: 52px;
+      flex-shrink: 0;
+      border-radius: 13px;
+      background: linear-gradient(180deg, #ffcf63 0%, #f5b335 100%);
+      border: 2.5px solid #4a311d;
+      box-shadow: 0 4px 0 #b87416, 0 6px 0 rgba(74, 49, 29, 0.35);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.08s ease;
+    }
+    .btn-amber-square:active { transform: translateY(2px); }
+    .btn-amber-wide {
+      flex: 1;
+      height: 52px;
+      border-radius: 13px;
+      background: linear-gradient(180deg, #ffcf63 0%, #f5b335 100%);
+      border: 2.5px solid #4a311d;
+      box-shadow: 0 4px 0 #b87416, 0 6px 0 rgba(74, 49, 29, 0.35);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.08s ease;
+    }
+    .btn-amber-wide:active { transform: translateY(2px); }
+    .btn-continue-mint {
+      width: 100%;
+      height: 54px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #60e1d6 0%, #44cbc0 100%);
+      border: 2.5px solid #2b6e68;
+      box-shadow: 0 4px 0 #2b8d85, 0 6px 0 rgba(58, 38, 18, 0.32);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.08s ease;
+    }
+    .btn-continue-mint:active { transform: translateY(2px); }
+    .btn-outlined-txt {
+      font-size: 20px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 1px;
+      paint-order: stroke fill;
+      -webkit-text-stroke: 3.8px #5d3b1e;
+    }
+    .btn-outlined-txt-mint {
+      -webkit-text-stroke: 3.8px #1f5c57;
+    }
+    .settings-footer-meta {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6px;
+      font-size: 12px;
+      font-weight: 700;
+      color: #baa996;
+    }
+
+    /* ===== Level Select Modal ===== */
+    .level-list-items {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-height: 360px;
+      overflow-y: auto;
+      padding: 2px 2px 4px;
+    }
+    .level-card-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 12px 9px 9px;
+      border-radius: 14px;
+      background: #fff8ea;
+      border: 2px solid #d9bfa0;
+      box-shadow: 0 3px 0 #d9bfa0;
+      cursor: pointer;
+      text-align: left;
+      font-family: inherit;
+      transition: transform 0.08s ease, border-color 0.12s ease;
+    }
+    .level-card-btn:active { transform: translateY(1.5px); }
+    .level-card-btn.is-current {
+      background: #eefcf9;
+      border-color: #3bb8ae;
+      box-shadow: 0 3px 0 #3bb8ae;
+    }
+    .level-thumb {
+      width: 56px;
+      height: 56px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #4a311d;
+      flex-shrink: 0;
+      background: #e8d2b0;
+    }
+    .level-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 62%;
+      display: block;
+    }
+    .level-card-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .level-card-title {
+      font-size: 15.5px;
+      font-weight: 900;
+      color: #4a311d;
+      margin-bottom: 3px;
+    }
+    .level-card-sub {
+      font-size: 12px;
+      font-weight: 700;
+      color: #8c6d4e;
+    }
+    .level-card-pill {
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: #ffc64f;
+      border: 2px solid #4a311d;
+      color: #4a311d;
+      font-size: 12.5px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .level-card-btn.is-current .level-card-pill {
+      background: #4fd4cb;
+      color: #fff;
+      border-color: #276e68;
+    }
   </style>
-  <script type="module" crossorigin src="./chunks/index-B1XvbDg8.js"></script>
+  <script type="module" crossorigin src="./chunks/index-Dgd4DtsK.js"></script>
 </head>
 <body>
   <div id="gameShell" class="game-shell">
@@ -606,15 +1260,14 @@
     </div>
 
     <!-- Compact Frameless Floating HUD (100% Authentic Plan 1 Hand-Drawn Artwork!) -->
-    <div class="floating-hud">
+    <div id="floatingHud" class="floating-hud">
       <div class="top-nav-row">
         <div class="nav-left">
-          <button id="btnSound" title="开关音效" class="ui-img-btn icon-circle">
-            <img id="iconSoundOn" src="./assets/ui/btn_sound.webp?v=ui2" alt="音效开" />
-            <img id="iconSoundOff" class="hidden" src="./assets/ui/btn_sound_off.webp?v=ui2" alt="音效关" />
-          </button>
-          <button id="btnRestart" title="重新开始" class="ui-img-btn icon-circle">
-            <img src="./assets/ui/btn_restart.webp?v=ui2" alt="重新开始" />
+          <button id="btnSettings" title="设置" class="gear-btn" aria-label="设置">
+            <svg viewBox="0 0 44 44" aria-hidden="true">
+              <path d="M18.2 5.4 C19.5 4.2 24.5 4.2 25.8 5.4 L27.3 9.2 C28.6 9.6 29.8 10.3 30.8 11.2 L34.8 10.2 C36.5 10.7 39 14.9 38.6 16.7 L35.8 19.6 C36.0 21.0 36.0 23.0 35.8 24.4 L38.6 27.3 C39 29.1 36.5 33.3 34.8 33.8 L30.8 32.8 C29.8 33.7 28.6 34.4 27.3 34.8 L25.8 38.6 C24.5 39.8 19.5 39.8 18.2 38.6 L16.7 34.8 C15.4 34.4 14.2 33.7 13.2 32.8 L9.2 33.8 C7.5 33.3 5 29.1 5.4 27.3 L8.2 24.4 C8.0 23.0 8.0 21.0 8.2 19.6 L5.4 16.7 C5 14.9 7.5 10.7 9.2 10.2 L13.2 11.2 C14.2 10.3 15.4 9.6 16.7 9.2 Z" fill="#fffdf8" stroke="#4a311d" stroke-width="2.8" stroke-linejoin="round"/>
+              <circle cx="22" cy="22" r="6.2" fill="#e6c496" stroke="#4a311d" stroke-width="2.6"/>
+            </svg>
           </button>
         </div>
 
@@ -630,6 +1283,202 @@
 
       <div id="boxesRow" class="boxes-row"></div>
       <div id="trayContainer" class="tray-container"></div>
+    </div>
+
+    <!-- Home Screen -->
+    <div id="homeScreen" class="home-screen">
+      <div class="home-top-area">
+        <div class="home-top-row">
+          <button id="btnHomeSettings" title="设置" class="gear-btn" aria-label="设置">
+            <svg viewBox="0 0 44 44" aria-hidden="true">
+              <path d="M18.2 5.4 C19.5 4.2 24.5 4.2 25.8 5.4 L27.3 9.2 C28.6 9.6 29.8 10.3 30.8 11.2 L34.8 10.2 C36.5 10.7 39 14.9 38.6 16.7 L35.8 19.6 C36.0 21.0 36.0 23.0 35.8 24.4 L38.6 27.3 C39 29.1 36.5 33.3 34.8 33.8 L30.8 32.8 C29.8 33.7 28.6 34.4 27.3 34.8 L25.8 38.6 C24.5 39.8 19.5 39.8 18.2 38.6 L16.7 34.8 C15.4 34.4 14.2 33.7 13.2 32.8 L9.2 33.8 C7.5 33.3 5 29.1 5.4 27.3 L8.2 24.4 C8.0 23.0 8.0 21.0 8.2 19.6 L5.4 16.7 C5 14.9 7.5 10.7 9.2 10.2 L13.2 11.2 C14.2 10.3 15.4 9.6 16.7 9.2 Z" fill="#fffdf8" stroke="#4a311d" stroke-width="2.8" stroke-linejoin="round"/>
+              <circle cx="22" cy="22" r="6.2" fill="#ffbe55" stroke="#4a311d" stroke-width="2.6"/>
+            </svg>
+          </button>
+          <button id="btnHomeStamina" class="stamina-pill" type="button">
+            <span class="stamina-heart" aria-hidden="true">
+              <svg viewBox="0 0 36 34">
+                <path d="M18 31 C18 31 4 22.4 4 12.2 C4 7.3 7.7 4 12.2 4 C15.0 4 17.0 5.5 18 7.4 C19.0 5.5 21.0 4 23.8 4 C28.3 4 32 7.3 32 12.2 C32 22.4 18 31 18 31 Z" fill="#f25757" stroke="#4a311d" stroke-width="2.6" stroke-linejoin="round"/>
+                <path d="M9.5 10.5 C9.5 8.6 11 7.6 12.6 7.8" fill="none" stroke="#ff9f9f" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <span class="stamina-heart-num">5</span>
+            </span>
+            <span>体力已满</span>
+          </button>
+        </div>
+
+        <button id="btnHomeShare" class="home-share-btn" type="button" title="分享游戏">
+          <svg viewBox="0 0 36 34" aria-hidden="true">
+            <rect x="4" y="13" width="28" height="16" rx="4" fill="#fffdf7" stroke="#4a311d" stroke-width="2.4"/>
+            <path d="M15 20 C15 13 19 10 24 10 L24 6 L32 12.5 L24 19 L24 15 C20.5 15 18 16.8 16.5 21 Z" fill="#f15b4c" stroke="#4a311d" stroke-width="2.2" stroke-linejoin="round"/>
+          </svg>
+          <span class="home-icon-caption">分享游戏</span>
+        </button>
+      </div>
+
+      <div class="home-logo-stage">
+        <div class="home-logo-sticker">
+          <div class="logo-row-top">
+            <span class="logo-word">堆叠</span>
+            <div class="logo-bear-box" aria-hidden="true">
+              <img class="logo-bear-img" src="./assets/items/plush_0.webp?v=td6" alt="" />
+              <svg class="logo-box-front" viewBox="0 0 68 42">
+                <polygon points="6,10 44,14 44,38 6,32" fill="#fffdf8" stroke="#4a311d" stroke-width="2.6" stroke-linejoin="round"/>
+                <polygon points="44,14 62,8 62,32 44,38" fill="#ebd9c0" stroke="#4a311d" stroke-width="2.6" stroke-linejoin="round"/>
+                <path d="M6 10 L20 6 L62 8 L44 14 Z" fill="none" stroke="#4a311d" stroke-width="2.4" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </div>
+          <div class="logo-row-bottom">
+            <svg class="logo-star-icon" viewBox="0 0 44 44" aria-hidden="true">
+              <path d="M22 4 C24.6 4 27 13 29.8 14.8 C32.6 16.6 41 16 41.8 18.8 C42.6 21.6 35.6 27 34.8 30.2 C34 33.4 37.2 40.4 34.6 42.2 C32 44 25.4 38.6 22 38.6 C18.6 38.6 12 44 9.4 42.2 C6.8 40.4 10 33.4 9.2 30.2 C8.4 27 1.4 21.6 2.2 18.8 C3 16 11.4 16.6 14.2 14.8 C17 13 19.4 4 22 4 Z" fill="#ffe24d" stroke="#4a311d" stroke-width="3" stroke-linejoin="round"/>
+              <path d="M16 17 C17.5 15 19.5 14 21.5 14" fill="none" stroke="#fff9c4" stroke-width="2.4" stroke-linecap="round"/>
+            </svg>
+            <span class="logo-word logo-word-sub">收纳</span>
+          </div>
+          <svg class="logo-swoosh" viewBox="0 0 210 20" aria-hidden="true">
+            <path d="M8 14 Q92 4 198 6 Q100 14 14 18 Z" fill="#ffbe47"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="home-bottom-area">
+        <div class="home-actions-row">
+          <div class="home-levels-wrap">
+            <div class="new-badge-bubble">上新了！</div>
+            <button id="btnLevelList" class="home-levels-btn" type="button">
+              <svg viewBox="0 0 46 38" aria-hidden="true">
+                <rect x="20" y="6" width="20" height="24" rx="4" fill="#8be09e" stroke="#4a311d" stroke-width="2.4"/>
+                <rect x="5" y="3" width="24" height="28" rx="4" fill="#fffdf8" stroke="#4a311d" stroke-width="2.5"/>
+                <rect x="5" y="3" width="24" height="8" rx="3" fill="#ffae36" stroke="#4a311d" stroke-width="2.4"/>
+                <circle cx="11" cy="17" r="1.8" fill="#4a311d"/>
+                <line x1="15.5" y1="17" x2="24" y2="17" stroke="#c89f68" stroke-width="2.4" stroke-linecap="round"/>
+                <circle cx="11" cy="23.5" r="1.8" fill="#4a311d"/>
+                <line x1="15.5" y1="23.5" x2="24" y2="23.5" stroke="#c89f68" stroke-width="2.4" stroke-linecap="round"/>
+              </svg>
+              <span class="home-icon-caption">关卡列表</span>
+            </button>
+          </div>
+
+          <button id="btnStartGame" class="home-start-btn" type="button">
+            <span class="home-start-text">开始游戏</span>
+            <svg width="26" height="24" viewBox="0 0 36 34" aria-hidden="true">
+              <path d="M18 31 C18 31 4 22.4 4 12.2 C4 7.3 7.7 4 12.2 4 C15.0 4 17.0 5.5 18 7.4 C19.0 5.5 21.0 4 23.8 4 C28.3 4 32 7.3 32 12.2 C32 22.4 18 31 18 31 Z" fill="#f25757" stroke="#4a311d" stroke-width="2.6" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+
+        <div id="homeLevelLabel" class="home-level-caption">第1关</div>
+        <div id="homePlayerId" class="home-player-id">10248866</div>
+      </div>
+    </div>
+
+    <!-- Settings Modal (Shared by Home Screen & In-Level HUD) -->
+    <div id="settingsOverlay" class="cute-modal-overlay hidden">
+      <div class="cute-modal-card">
+        <div class="cute-modal-banner">
+          <span class="sticker-title">设置</span>
+          <button id="btnSettingsClose" class="modal-close-x" type="button" aria-label="关闭">✕</button>
+        </div>
+        <div class="cute-modal-body">
+          <div class="settings-rows">
+            <div class="settings-row">
+              <div class="settings-label-wrap">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M4 9.5H8L13.5 5V19L8 14.5H4C3.45 14.5 3 14.05 3 13.5V10.5C3 9.95 3.45 9.5 4 9.5Z" fill="#9a7554"/>
+                  <path d="M16.5 8.8C17.8 9.8 18.5 10.9 18.5 12C18.5 13.1 17.8 14.2 16.5 15.2" stroke="#9a7554" stroke-width="2.2" stroke-linecap="round"/>
+                  <path d="M19.2 6.5C21 8.1 21.8 9.9 21.8 12C21.8 14.1 21 15.9 19.2 17.5" stroke="#9a7554" stroke-width="2.2" stroke-linecap="round"/>
+                </svg>
+                <span>音乐</span>
+              </div>
+              <div class="cute-slider-wrap">
+                <input id="sliderMusic" class="cute-range" type="range" min="0" max="100" value="35" aria-label="音乐音量" />
+              </div>
+            </div>
+
+            <div class="settings-row">
+              <div class="settings-label-wrap">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M10 17.5V6.5L20 4.5V15.5" stroke="#9a7554" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="7.5" cy="17.5" r="2.8" fill="#9a7554"/>
+                  <circle cx="17.5" cy="15.5" r="2.8" fill="#9a7554"/>
+                </svg>
+                <span>音效</span>
+              </div>
+              <div class="cute-slider-wrap">
+                <input id="sliderSfx" class="cute-range" type="range" min="0" max="100" value="100" aria-label="音效音量" />
+              </div>
+            </div>
+
+            <div class="settings-row">
+              <div class="settings-label-wrap">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <rect x="7" y="4" width="10" height="16" rx="2.4" stroke="#9a7554" stroke-width="2.2" fill="#e8d3bc"/>
+                  <line x1="10.5" y1="17" x2="13.5" y2="17" stroke="#9a7554" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M3.5 8.5L2.5 11.5L3.8 14.5" stroke="#9a7554" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M20.5 8.5L21.5 11.5L20.2 14.5" stroke="#9a7554" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>震动</span>
+              </div>
+              <button id="toggleVibrate" class="cute-toggle-btn is-on" type="button" role="switch" aria-checked="true" aria-label="开关震动">
+                <span class="cute-toggle-knob">
+                  <svg class="cute-toggle-check" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M5 12.5L10 17.5L19 7.5" stroke="#39b7ad" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
+
+          <div class="settings-divider"></div>
+
+          <div id="settingsLevelActions" class="settings-level-actions">
+            <div class="settings-top-btns">
+              <button id="btnSettingsHome" class="btn-amber-square" type="button" title="返回主页" aria-label="返回主页">
+                <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
+                  <path d="M5 15 L16 5 L27 15 V27 H19.5 V19.5 H12.5 V27 H5 Z" fill="#fffdf8" stroke="#8f5b12" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+              </button>
+              <button id="btnSettingsReplay" class="btn-amber-wide" type="button">
+                <span class="btn-outlined-txt">重玩</span>
+                <svg width="22" height="20" viewBox="0 0 36 34" aria-hidden="true">
+                  <path d="M18 31 C18 31 4 22.4 4 12.2 C4 7.3 7.7 4 12.2 4 C15.0 4 17.0 5.5 18 7.4 C19.0 5.5 21.0 4 23.8 4 C28.3 4 32 7.3 32 12.2 C32 22.4 18 31 18 31 Z" fill="#f25757" stroke="#5d3b1e" stroke-width="2.6" stroke-linejoin="round"/>
+                </svg>
+              </button>
+            </div>
+            <button id="btnSettingsContinue" class="btn-continue-mint" type="button">
+              <span class="btn-outlined-txt btn-outlined-txt-mint">继续游戏</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 4.8 C6 3.7 7.2 3 8.2 3.6 L19.6 10.8 C20.5 11.4 20.5 12.6 19.6 13.2 L8.2 20.4 C7.2 21 6 20.3 6 19.2 Z" fill="#fffdf8" stroke="#1f5c57" stroke-width="2.2" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+
+          <div id="settingsHomeActions" class="hidden">
+            <button id="btnSettingsDone" class="btn-continue-mint" type="button">
+              <span class="btn-outlined-txt btn-outlined-txt-mint">好的</span>
+            </button>
+          </div>
+
+          <div class="settings-footer-meta">
+            <span id="settingsPlayerId">ID: 10248866</span>
+            <span>0.2.22</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level List Modal -->
+    <div id="levelListOverlay" class="cute-modal-overlay hidden">
+      <div class="cute-modal-card">
+        <div class="cute-modal-banner">
+          <span class="sticker-title">关卡列表</span>
+          <button id="btnLevelListClose" class="modal-close-x" type="button" aria-label="关闭">✕</button>
+        </div>
+        <div class="cute-modal-body">
+          <div id="levelListItems" class="level-list-items"></div>
+        </div>
+      </div>
     </div>
 
     <!-- Toast -->
