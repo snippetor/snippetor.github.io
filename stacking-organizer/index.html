@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>堆叠收纳 · 我的书桌</title>
+  <title>收纳日记 · Tidy Diary</title>
   <style>
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
     html, body {
@@ -597,10 +597,10 @@
       text-decoration: underline;
     }
 
-    /* ===== Shared Cute Hand-Drawn Gear Button & Modal Close Button ===== */
+    /* ===== Shared Cute Hand-Drawn Gear/Share Raster Buttons & Modal Close Button ===== */
     .gear-btn {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       border: none;
       background: transparent;
       padding: 0;
@@ -608,11 +608,17 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      filter: drop-shadow(0 2.5px 0 rgba(74, 49, 29, 0.32));
+      filter: drop-shadow(0 3px 3px rgba(68, 44, 26, 0.24));
       transition: transform 0.1s ease;
     }
-    .gear-btn:active { transform: scale(0.92) rotate(18deg); }
-    .gear-btn svg { width: 36px; height: 36px; display: block; }
+    .gear-btn:active { transform: scale(0.92); }
+    .gear-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      pointer-events: none;
+    }
 
     .modal-close-x {
       position: absolute;
@@ -636,7 +642,7 @@
     }
     .modal-close-x:active { transform: translateY(-50%) scale(0.9); }
 
-    /* ===== Home Screen (Warm Honey Star Background + Die-Cut Logo + Action Dock) ===== */
+    /* ===== Home Screen (Plan-1 Clean Sunlit Oak Wood & Hand-Drawn Stationery Style) ===== */
     .home-screen {
       position: absolute;
       inset: 0;
@@ -644,331 +650,303 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: max(14px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
-      background-color: #ffbe55;
-      background-image:
-        radial-gradient(circle at 50% 42%, rgba(255, 240, 194, 0.34) 0%, rgba(255, 182, 68, 0) 64%),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%23ffe39e' fill-opacity='0.34'%3E%3Cpath transform='translate(28,28) rotate(-14) scale(0.92)' d='M0,-18 C3,-18 6,-9 9,-7 C12,-5 21,-6 22,-3 C23,0 16,6 15,9 C14,12 17,20 14,22 C11,24 4,18 0,18 C-4,18 -11,24 -14,22 C-17,20 -14,12 -15,9 C-16,6 -23,0 -22,-3 C-21,-6 -12,-5 -9,-7 C-6,-9 -3,-18 0,-18Z'/%3E%3Cpath transform='translate(88,88) rotate(16) scale(0.86)' d='M0,-18 C3,-18 6,-9 9,-7 C12,-5 21,-6 22,-3 C23,0 16,6 15,9 C14,12 17,20 14,22 C11,24 4,18 0,18 C-4,18 -11,24 -14,22 C-17,20 -14,12 -15,9 C-16,6 -23,0 -22,-3 C-21,-6 -12,-5 -9,-7 C-6,-9 -3,-18 0,-18Z'/%3E%3C/g%3E%3C/svg%3E");
-      background-size: 100% 100%, 108px 108px;
-      transition: opacity 0.24s ease, transform 0.24s ease;
+      padding: max(14px, env(safe-area-inset-top)) 16px max(22px, env(safe-area-inset-bottom));
+      background: #cf965c url('./assets/backgrounds/home_wood.webp?v=ui3') center / cover no-repeat;
     }
     .home-screen.hidden {
       display: none !important;
     }
 
-    .home-top-area {
+    .home-top-bar {
+      width: 100%;
       display: flex;
-      flex-direction: column;
       align-items: flex-start;
-      gap: 12px;
+      justify-content: space-between;
+      gap: 10px;
     }
-    .home-top-row {
+    .home-top-left {
       display: flex;
       align-items: center;
       gap: 10px;
     }
     .stamina-pill {
-      position: relative;
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      padding: 4px 14px 4px 30px;
-      height: 28px;
+      gap: 8px;
+      padding: 0 15px 0 9px;
+      height: 40px;
       border-radius: 999px;
-      border: none;
-      background: rgba(114, 77, 36, 0.56);
-      color: #fffdf5;
-      font-size: 13px;
+      border: 2.2px solid #442c1a;
+      background: linear-gradient(180deg, #fcf4e4 0%, #f3e2c3 100%);
+      box-shadow: 0 3px 0 #c9a778, 0 4.5px 6px rgba(68, 44, 26, 0.18);
+      color: #3d281a;
+      font-size: 14.5px;
       font-weight: 800;
       letter-spacing: 0.4px;
       cursor: pointer;
       font-family: inherit;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+      transition: transform 0.08s ease;
     }
-    .stamina-pill:active { transform: scale(0.96); }
+    .stamina-pill:active { transform: translateY(1.5px) scale(0.97); }
     .stamina-heart {
-      position: absolute;
-      left: -5px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 31px;
-      height: 31px;
-      display: flex;
+      position: relative;
+      width: 28px;
+      height: 26px;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      filter: drop-shadow(0 2px 0 rgba(74, 49, 29, 0.35));
+      flex-shrink: 0;
     }
-    .stamina-heart svg { width: 31px; height: 31px; }
+    .stamina-heart svg { width: 28px; height: 26px; display: block; }
     .stamina-heart-num {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -53%);
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 900;
-      color: #fff;
-      text-shadow: 0 1px 0 #7b1e1e;
+      color: #3d281a;
     }
 
-    .home-share-btn {
-      position: relative;
-      width: 48px;
-      height: 48px;
-      border-radius: 13px;
-      background: linear-gradient(180deg, #ffe285 0%, #f8b83d 100%);
-      border: 2.2px solid #4a311d;
-      box-shadow: 0 3.5px 0 #a96c19, 0 5px 0 rgba(74, 49, 29, 0.25);
+    .home-share-wrap {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding-bottom: 6px;
+      gap: 3px;
+      border: none;
+      background: transparent;
+      padding: 0;
       cursor: pointer;
       font-family: inherit;
       transition: transform 0.08s ease;
     }
-    .home-share-btn:active { transform: translateY(2px) scale(0.96); }
-    .home-share-btn svg { width: 28px; height: 28px; }
-    .home-icon-caption {
-      position: absolute;
-      left: 50%;
-      bottom: -5px;
-      transform: translateX(-50%);
-      white-space: nowrap;
-      font-size: 11.5px;
-      font-weight: 900;
-      color: #fffdf8;
-      paint-order: stroke fill;
-      -webkit-text-stroke: 3.4px #4a311d;
-      letter-spacing: 0.3px;
+    .home-share-wrap:active { transform: scale(0.93); }
+    .home-share-icon {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 3px 3px rgba(68, 44, 26, 0.24));
+    }
+    .home-share-label {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #442c1a;
+      letter-spacing: 0.5px;
+      text-shadow: 0 1px 0 rgba(255, 240, 212, 0.55);
     }
 
-    /* Center Die-Cut Cartoon Sticker Logo */
-    .home-logo-stage {
+    /* Center Hero: Hand-Drawn Title Card + Vertically Stacked Primary Buttons */
+    .home-center-stack {
       flex: 1;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8px 0 28px;
-    }
-    .home-logo-sticker {
-      position: relative;
-      display: inline-flex;
       flex-direction: column;
       align-items: center;
-      padding: 12px 18px 10px;
-      animation: homeLogoFloat 3.2s ease-in-out infinite;
-      /* True organic die-cut white sticker contour + crisp dark-brown outer outline + warm shadow */
-      filter:
-        drop-shadow(0 0 0 #fffdf9)
-        drop-shadow(5px 0 0 #fffdf9)
-        drop-shadow(-5px 0 0 #fffdf9)
-        drop-shadow(0 5px 0 #fffdf9)
-        drop-shadow(0 -5px 0 #fffdf9)
-        drop-shadow(4px 4px 0 #fffdf9)
-        drop-shadow(-4px 4px 0 #fffdf9)
-        drop-shadow(4px -4px 0 #fffdf9)
-        drop-shadow(-4px -4px 0 #fffdf9)
-        drop-shadow(0 0 2.6px #4a311d)
-        drop-shadow(0 5px 0 rgba(154, 88, 16, 0.34));
+      justify-content: center;
+      gap: 28px;
+      padding: 4px 10px 8px;
+    }
+    .home-logo-img {
+      width: min(84%, 306px);
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 6px 10px rgba(68, 44, 26, 0.2));
+      animation: homeLogoFloat 3.6s ease-in-out infinite;
+      pointer-events: none;
     }
     @keyframes homeLogoFloat {
-      0%, 100% { transform: translateY(0px) rotate(-0.8deg); }
-      50% { transform: translateY(-6px) rotate(0.8deg); }
-    }
-    .logo-row-top {
-      display: flex;
-      align-items: flex-end;
-      gap: 6px;
-      line-height: 1;
-    }
-    .logo-row-bottom {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      margin-top: 4px;
-      line-height: 1;
-    }
-    .logo-word {
-      font-size: 56px;
-      font-weight: 900;
-      letter-spacing: 3px;
-      color: #66e2ca;
-      paint-order: stroke fill;
-      -webkit-text-stroke: 7.5px #286e62;
-      filter: drop-shadow(0 3px 0 #1d5249);
-      line-height: 1.04;
-    }
-    .logo-word-sub {
-      font-size: 54px;
-      letter-spacing: 3px;
-    }
-    .logo-bear-box {
-      position: relative;
-      width: 64px;
-      height: 64px;
-      margin-bottom: 2px;
-      margin-left: 2px;
-      flex-shrink: 0;
-    }
-    .logo-bear-img {
-      position: absolute;
-      left: 50%;
-      top: -6px;
-      transform: translateX(-50%) rotate(4deg);
-      width: 52px;
-      height: 52px;
-      object-fit: contain;
-      pointer-events: none;
-    }
-    .logo-box-front {
-      position: absolute;
-      left: 2px;
-      right: 2px;
-      bottom: 0;
-      width: 60px;
-      height: 36px;
-    }
-    .logo-star-icon {
-      width: 40px;
-      height: 40px;
-      flex-shrink: 0;
-      filter: drop-shadow(0 2.5px 0 rgba(74, 49, 29, 0.28));
-      animation: starTwinkle 2.2s ease-in-out infinite;
-    }
-    .logo-swoosh {
-      width: 204px;
-      height: 18px;
-      margin-top: 6px;
-      display: block;
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
     }
 
-    /* Home Bottom Action Dock */
-    .home-bottom-area {
+    .home-btn-stack {
+      width: 100%;
+      max-width: 256px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* 1. Start Game Primary Mint Pill + Hanging Serrated Level Progress Tag */
+    .home-start-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .home-start-btn {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      height: 58px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #abdfd0 0%, #92cfbe 100%);
+      border: 2.4px solid #442c1a;
+      box-shadow:
+        inset 0 2.5px 0 rgba(255, 255, 255, 0.45),
+        0 5px 0 #70ab9a,
+        0 7.5px 0 #442c1a,
+        0 12px 18px rgba(68, 44, 26, 0.18);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.08s ease, box-shadow 0.08s ease;
+    }
+    .home-start-btn::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 7px;
+      width: 30px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.55);
+      pointer-events: none;
+    }
+    .home-start-btn:active {
+      transform: translateY(3px);
+      box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.35),
+        0 2px 0 #70ab9a,
+        0 4.5px 0 #442c1a;
+    }
+    .home-start-text {
+      font-size: 22px;
+      font-weight: 900;
+      color: #3a2417;
+      letter-spacing: 2px;
+    }
+
+    .home-level-ribbon {
+      position: relative;
+      z-index: 1;
+      margin-top: 2px;
+      width: 176px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(0 3px 4px rgba(68, 44, 26, 0.18));
+    }
+    .home-level-ribbon img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      pointer-events: none;
+    }
+    .home-level-caption {
+      position: relative;
+      z-index: 1;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: #442c1a;
+      letter-spacing: 0.6px;
+      white-space: nowrap;
+    }
+
+    /* 2. Level List Cream Pill + Tilted Peach Washi-Tape Tag */
+    .home-levels-wrap {
+      position: relative;
+      width: 100%;
+    }
+    .home-levels-btn {
+      position: relative;
+      width: 100%;
+      height: 58px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #fcf1d4 0%, #f5e0b0 100%);
+      border: 2.4px solid #442c1a;
+      box-shadow:
+        inset 0 2.5px 0 rgba(255, 255, 255, 0.62),
+        0 5px 0 #d5b67c,
+        0 7.5px 0 #442c1a,
+        0 12px 18px rgba(68, 44, 26, 0.18);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.08s ease, box-shadow 0.08s ease;
+    }
+    .home-levels-btn::before {
+      content: '';
+      position: absolute;
+      left: 22px;
+      top: 7px;
+      width: 28px;
+      height: 5px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.65);
+      pointer-events: none;
+    }
+    .home-levels-btn:active {
+      transform: translateY(3px);
+      box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.45),
+        0 2px 0 #d5b67c,
+        0 4.5px 0 #442c1a;
+    }
+    .home-levels-btn svg {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+    .home-levels-text {
+      font-size: 21px;
+      font-weight: 900;
+      color: #3a2417;
+      letter-spacing: 2px;
+    }
+
+    .washi-new-tag {
+      position: absolute;
+      right: -8px;
+      top: -11px;
+      z-index: 3;
+      padding: 3px 11px;
+      background: linear-gradient(180deg, #f8c6a6 0%, #f0b38d 100%);
+      border: 1.8px solid #442c1a;
+      border-radius: 3px;
+      transform: rotate(22deg);
+      font-size: 11.5px;
+      font-weight: 900;
+      color: #442c1a;
+      letter-spacing: 0.6px;
+      box-shadow: 0 2px 4px rgba(68, 44, 26, 0.22);
+      pointer-events: none;
+    }
+
+    /* Bottom Minimal Teddy-in-Box Mascot */
+    .home-bottom-mascot {
       position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 14px;
-      padding-bottom: 18px;
+      padding-bottom: 6px;
     }
-    .home-actions-row {
-      width: 100%;
-      max-width: 318px;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      gap: 14px;
-    }
-    .home-levels-wrap {
-      position: relative;
-      flex-shrink: 0;
-    }
-    .new-badge-bubble {
-      position: absolute;
-      left: 50%;
-      bottom: calc(100% + 10px);
-      transform: translateX(-42%);
-      background: #fffdf8;
-      border: 2.2px solid #4a311d;
-      border-radius: 12px;
-      padding: 5px 11px;
-      white-space: nowrap;
-      font-size: 13.5px;
-      font-weight: 900;
-      color: #d9721e;
-      box-shadow: 0 3px 0 rgba(74, 49, 29, 0.2);
-      animation: bubbleBob 1.9s ease-in-out infinite;
-      pointer-events: none;
-    }
-    .new-badge-bubble::before {
-      content: '';
-      position: absolute;
-      left: 26px;
-      bottom: -8px;
-      border: 6px solid transparent;
-      border-top-color: #4a311d;
-      border-bottom: 0;
-    }
-    .new-badge-bubble::after {
-      content: '';
-      position: absolute;
-      left: 28px;
-      bottom: -5px;
-      border: 4px solid transparent;
-      border-top-color: #fffdf8;
-      border-bottom: 0;
-    }
-    @keyframes bubbleBob {
-      0%, 100% { transform: translateX(-42%) translateY(0); }
-      50% { transform: translateX(-42%) translateY(-4px); }
-    }
-
-    .home-levels-btn {
-      position: relative;
-      width: 68px;
-      height: 62px;
-      border-radius: 15px;
-      background: linear-gradient(180deg, #ffe285 0%, #f5b335 100%);
-      border: 2.5px solid #4a311d;
-      box-shadow: 0 5px 0 #a36514, 0 7px 0 rgba(74, 49, 29, 0.25);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding-bottom: 10px;
+    .home-bear-img {
+      width: 96px;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 6px 6px rgba(68, 44, 26, 0.22));
       cursor: pointer;
-      font-family: inherit;
-      transition: transform 0.08s ease;
+      transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .home-levels-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #a36514; }
-    .home-levels-btn svg { width: 38px; height: 34px; }
-    .home-levels-btn .home-icon-caption {
-      bottom: 3px;
-      font-size: 12.5px;
-      -webkit-text-stroke: 3.6px #4a311d;
-    }
-
-    .home-start-btn {
-      flex: 1;
-      max-width: 224px;
-      height: 62px;
-      border-radius: 16px;
-      background: linear-gradient(180deg, #62e3d8 0%, #44cbc0 100%);
-      border: 2.5px solid #2b6f6a;
-      box-shadow: 0 5px 0 #268981, 0 7px 0 rgba(58, 38, 18, 0.28);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      cursor: pointer;
-      font-family: inherit;
-      transition: transform 0.08s ease;
-    }
-    .home-start-btn:active { transform: translateY(3px); box-shadow: 0 2px 0 #268981; }
-    .home-start-text {
-      font-size: 24px;
-      font-weight: 900;
-      color: #ffffff;
-      letter-spacing: 1.5px;
-      paint-order: stroke fill;
-      -webkit-text-stroke: 4.5px #2e2017;
-      filter: drop-shadow(0 2px 0 rgba(46, 32, 23, 0.35));
-    }
-    .home-level-caption {
-      font-size: 19px;
-      font-weight: 900;
-      color: #fffdf5;
-      letter-spacing: 1px;
-      paint-order: stroke fill;
-      -webkit-text-stroke: 4px #c77b24;
-      filter: drop-shadow(0 2px 0 rgba(138, 78, 14, 0.3));
-    }
+    .home-bear-img:active { transform: scale(1.08) translateY(-4px); }
     .home-player-id {
       position: absolute;
       left: 2px;
-      bottom: -14px;
+      bottom: -8px;
       font-size: 11px;
       font-weight: 700;
-      color: rgba(114, 70, 22, 0.55);
+      color: rgba(74, 49, 29, 0.45);
       letter-spacing: 0.4px;
     }
 
@@ -1250,7 +1228,7 @@
       border-color: #276e68;
     }
   </style>
-  <script type="module" crossorigin src="./chunks/index-Dgd4DtsK.js"></script>
+  <script type="module" crossorigin src="./chunks/index-BYUGxaea.js"></script>
 </head>
 <body>
   <div id="gameShell" class="game-shell">
@@ -1263,11 +1241,8 @@
     <div id="floatingHud" class="floating-hud">
       <div class="top-nav-row">
         <div class="nav-left">
-          <button id="btnSettings" title="设置" class="gear-btn" aria-label="设置">
-            <svg viewBox="0 0 44 44" aria-hidden="true">
-              <path d="M18.2 5.4 C19.5 4.2 24.5 4.2 25.8 5.4 L27.3 9.2 C28.6 9.6 29.8 10.3 30.8 11.2 L34.8 10.2 C36.5 10.7 39 14.9 38.6 16.7 L35.8 19.6 C36.0 21.0 36.0 23.0 35.8 24.4 L38.6 27.3 C39 29.1 36.5 33.3 34.8 33.8 L30.8 32.8 C29.8 33.7 28.6 34.4 27.3 34.8 L25.8 38.6 C24.5 39.8 19.5 39.8 18.2 38.6 L16.7 34.8 C15.4 34.4 14.2 33.7 13.2 32.8 L9.2 33.8 C7.5 33.3 5 29.1 5.4 27.3 L8.2 24.4 C8.0 23.0 8.0 21.0 8.2 19.6 L5.4 16.7 C5 14.9 7.5 10.7 9.2 10.2 L13.2 11.2 C14.2 10.3 15.4 9.6 16.7 9.2 Z" fill="#fffdf8" stroke="#4a311d" stroke-width="2.8" stroke-linejoin="round"/>
-              <circle cx="22" cy="22" r="6.2" fill="#e6c496" stroke="#4a311d" stroke-width="2.6"/>
-            </svg>
+          <button id="btnSettings" title="设置" class="gear-btn" aria-label="设置" style="width:38px;height:38px;">
+            <img src="./assets/ui/btn_gear.webp?v=ui3" alt="设置" />
           </button>
         </div>
 
@@ -1285,21 +1260,17 @@
       <div id="trayContainer" class="tray-container"></div>
     </div>
 
-    <!-- Home Screen -->
+    <!-- Home Screen (收纳日记 · Tidy Diary) -->
     <div id="homeScreen" class="home-screen">
-      <div class="home-top-area">
-        <div class="home-top-row">
+      <div class="home-top-bar">
+        <div class="home-top-left">
           <button id="btnHomeSettings" title="设置" class="gear-btn" aria-label="设置">
-            <svg viewBox="0 0 44 44" aria-hidden="true">
-              <path d="M18.2 5.4 C19.5 4.2 24.5 4.2 25.8 5.4 L27.3 9.2 C28.6 9.6 29.8 10.3 30.8 11.2 L34.8 10.2 C36.5 10.7 39 14.9 38.6 16.7 L35.8 19.6 C36.0 21.0 36.0 23.0 35.8 24.4 L38.6 27.3 C39 29.1 36.5 33.3 34.8 33.8 L30.8 32.8 C29.8 33.7 28.6 34.4 27.3 34.8 L25.8 38.6 C24.5 39.8 19.5 39.8 18.2 38.6 L16.7 34.8 C15.4 34.4 14.2 33.7 13.2 32.8 L9.2 33.8 C7.5 33.3 5 29.1 5.4 27.3 L8.2 24.4 C8.0 23.0 8.0 21.0 8.2 19.6 L5.4 16.7 C5 14.9 7.5 10.7 9.2 10.2 L13.2 11.2 C14.2 10.3 15.4 9.6 16.7 9.2 Z" fill="#fffdf8" stroke="#4a311d" stroke-width="2.8" stroke-linejoin="round"/>
-              <circle cx="22" cy="22" r="6.2" fill="#ffbe55" stroke="#4a311d" stroke-width="2.6"/>
-            </svg>
+            <img src="./assets/ui/btn_gear.webp?v=ui3" alt="设置" />
           </button>
           <button id="btnHomeStamina" class="stamina-pill" type="button">
             <span class="stamina-heart" aria-hidden="true">
               <svg viewBox="0 0 36 34">
-                <path d="M18 31 C18 31 4 22.4 4 12.2 C4 7.3 7.7 4 12.2 4 C15.0 4 17.0 5.5 18 7.4 C19.0 5.5 21.0 4 23.8 4 C28.3 4 32 7.3 32 12.2 C32 22.4 18 31 18 31 Z" fill="#f25757" stroke="#4a311d" stroke-width="2.6" stroke-linejoin="round"/>
-                <path d="M9.5 10.5 C9.5 8.6 11 7.6 12.6 7.8" fill="none" stroke="#ff9f9f" stroke-width="2" stroke-linecap="round"/>
+                <path d="M18 31 C18 31 4 22.4 4 12.2 C4 7.3 7.7 4 12.2 4 C15.0 4 17.0 5.5 18 7.4 C19.0 5.5 21.0 4 23.8 4 C28.3 4 32 7.3 32 12.2 C32 22.4 18 31 18 31 Z" fill="#f07e67" stroke="#442c1a" stroke-width="2.6" stroke-linejoin="round"/>
               </svg>
               <span class="stamina-heart-num">5</span>
             </span>
@@ -1307,68 +1278,48 @@
           </button>
         </div>
 
-        <button id="btnHomeShare" class="home-share-btn" type="button" title="分享游戏">
-          <svg viewBox="0 0 36 34" aria-hidden="true">
-            <rect x="4" y="13" width="28" height="16" rx="4" fill="#fffdf7" stroke="#4a311d" stroke-width="2.4"/>
-            <path d="M15 20 C15 13 19 10 24 10 L24 6 L32 12.5 L24 19 L24 15 C20.5 15 18 16.8 16.5 21 Z" fill="#f15b4c" stroke="#4a311d" stroke-width="2.2" stroke-linejoin="round"/>
-          </svg>
-          <span class="home-icon-caption">分享游戏</span>
+        <button id="btnHomeShare" class="home-share-wrap" type="button" title="分享游戏">
+          <img class="home-share-icon" src="./assets/ui/btn_share.webp?v=ui3" alt="分享" />
+          <span class="home-share-label">分享</span>
         </button>
       </div>
 
-      <div class="home-logo-stage">
-        <div class="home-logo-sticker">
-          <div class="logo-row-top">
-            <span class="logo-word">堆叠</span>
-            <div class="logo-bear-box" aria-hidden="true">
-              <img class="logo-bear-img" src="./assets/items/plush_0.webp?v=td6" alt="" />
-              <svg class="logo-box-front" viewBox="0 0 68 42">
-                <polygon points="6,10 44,14 44,38 6,32" fill="#fffdf8" stroke="#4a311d" stroke-width="2.6" stroke-linejoin="round"/>
-                <polygon points="44,14 62,8 62,32 44,38" fill="#ebd9c0" stroke="#4a311d" stroke-width="2.6" stroke-linejoin="round"/>
-                <path d="M6 10 L20 6 L62 8 L44 14 Z" fill="none" stroke="#4a311d" stroke-width="2.4" stroke-linejoin="round"/>
+      <div class="home-center-stack">
+        <img class="home-logo-img" src="./assets/ui/home_logo.webp?v=ui3" alt="收纳日记 Tidy Diary" />
+
+        <div class="home-btn-stack">
+          <div class="home-start-group">
+            <button id="btnStartGame" class="home-start-btn" type="button">
+              <span class="home-start-text">开始游戏</span>
+              <svg width="22" height="20" viewBox="0 0 36 34" aria-hidden="true">
+                <path d="M18 31 C18 31 4 22.4 4 12.2 C4 7.3 7.7 4 12.2 4 C15.0 4 17.0 5.5 18 7.4 C19.0 5.5 21.0 4 23.8 4 C28.3 4 32 7.3 32 12.2 C32 22.4 18 31 18 31 Z" fill="#f07e67" stroke="#442c1a" stroke-width="2.6" stroke-linejoin="round"/>
               </svg>
+            </button>
+            <div class="home-level-ribbon">
+              <img src="./assets/ui/title_ribbon.webp?v=ui2" alt="" />
+              <span id="homeLevelLabel" class="home-level-caption">第 1 关 · 我的书桌</span>
             </div>
           </div>
-          <div class="logo-row-bottom">
-            <svg class="logo-star-icon" viewBox="0 0 44 44" aria-hidden="true">
-              <path d="M22 4 C24.6 4 27 13 29.8 14.8 C32.6 16.6 41 16 41.8 18.8 C42.6 21.6 35.6 27 34.8 30.2 C34 33.4 37.2 40.4 34.6 42.2 C32 44 25.4 38.6 22 38.6 C18.6 38.6 12 44 9.4 42.2 C6.8 40.4 10 33.4 9.2 30.2 C8.4 27 1.4 21.6 2.2 18.8 C3 16 11.4 16.6 14.2 14.8 C17 13 19.4 4 22 4 Z" fill="#ffe24d" stroke="#4a311d" stroke-width="3" stroke-linejoin="round"/>
-              <path d="M16 17 C17.5 15 19.5 14 21.5 14" fill="none" stroke="#fff9c4" stroke-width="2.4" stroke-linecap="round"/>
-            </svg>
-            <span class="logo-word logo-word-sub">收纳</span>
+
+          <div class="home-levels-wrap">
+            <button id="btnLevelList" class="home-levels-btn" type="button">
+              <svg viewBox="0 0 26 24" fill="none" aria-hidden="true">
+                <circle cx="4.5" cy="5.5" r="2" stroke="#442c1a" stroke-width="2"/>
+                <rect x="10" y="3.8" width="13.5" height="3.4" rx="1.7" stroke="#442c1a" stroke-width="2"/>
+                <circle cx="4.5" cy="12" r="2" stroke="#442c1a" stroke-width="2"/>
+                <rect x="10" y="10.3" width="13.5" height="3.4" rx="1.7" stroke="#442c1a" stroke-width="2"/>
+                <circle cx="4.5" cy="18.5" r="2" stroke="#442c1a" stroke-width="2"/>
+                <rect x="10" y="16.8" width="13.5" height="3.4" rx="1.7" stroke="#442c1a" stroke-width="2"/>
+              </svg>
+              <span class="home-levels-text">关卡列表</span>
+            </button>
+            <span class="washi-new-tag">上新了</span>
           </div>
-          <svg class="logo-swoosh" viewBox="0 0 210 20" aria-hidden="true">
-            <path d="M8 14 Q92 4 198 6 Q100 14 14 18 Z" fill="#ffbe47"/>
-          </svg>
         </div>
       </div>
 
-      <div class="home-bottom-area">
-        <div class="home-actions-row">
-          <div class="home-levels-wrap">
-            <div class="new-badge-bubble">上新了！</div>
-            <button id="btnLevelList" class="home-levels-btn" type="button">
-              <svg viewBox="0 0 46 38" aria-hidden="true">
-                <rect x="20" y="6" width="20" height="24" rx="4" fill="#8be09e" stroke="#4a311d" stroke-width="2.4"/>
-                <rect x="5" y="3" width="24" height="28" rx="4" fill="#fffdf8" stroke="#4a311d" stroke-width="2.5"/>
-                <rect x="5" y="3" width="24" height="8" rx="3" fill="#ffae36" stroke="#4a311d" stroke-width="2.4"/>
-                <circle cx="11" cy="17" r="1.8" fill="#4a311d"/>
-                <line x1="15.5" y1="17" x2="24" y2="17" stroke="#c89f68" stroke-width="2.4" stroke-linecap="round"/>
-                <circle cx="11" cy="23.5" r="1.8" fill="#4a311d"/>
-                <line x1="15.5" y1="23.5" x2="24" y2="23.5" stroke="#c89f68" stroke-width="2.4" stroke-linecap="round"/>
-              </svg>
-              <span class="home-icon-caption">关卡列表</span>
-            </button>
-          </div>
-
-          <button id="btnStartGame" class="home-start-btn" type="button">
-            <span class="home-start-text">开始游戏</span>
-            <svg width="26" height="24" viewBox="0 0 36 34" aria-hidden="true">
-              <path d="M18 31 C18 31 4 22.4 4 12.2 C4 7.3 7.7 4 12.2 4 C15.0 4 17.0 5.5 18 7.4 C19.0 5.5 21.0 4 23.8 4 C28.3 4 32 7.3 32 12.2 C32 22.4 18 31 18 31 Z" fill="#f25757" stroke="#4a311d" stroke-width="2.6" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-
-        <div id="homeLevelLabel" class="home-level-caption">第1关</div>
+      <div class="home-bottom-mascot">
+        <img id="homeBearMascot" class="home-bear-img" src="./assets/ui/home_bear_box.webp?v=ui3" alt="小熊收纳盒" />
         <div id="homePlayerId" class="home-player-id">10248866</div>
       </div>
     </div>
