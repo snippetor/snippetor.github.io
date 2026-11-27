@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <title>收纳日记 · Tidy Diary</title>
+  <title>Tidy Diary</title>
   <link rel="preload" as="image" href="./assets/backgrounds/home_wood.webp?v=ui4" />
-  <link rel="preload" as="image" href="./assets/ui/home_logo.webp?v=ui3" />
+  <link rel="preload" as="image" href="./assets/ui/home_logo_blank.webp?v=ui6" />
   <style>
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
     html, body {
@@ -121,8 +121,10 @@
     .kraft-ribbon {
       position: relative;
       pointer-events: auto;
-      width: 152px;
+      min-width: 158px;
+      max-width: 204px;
       height: 40px;
+      padding: 0 16px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -139,19 +141,40 @@
     .ribbon-title {
       position: relative;
       z-index: 1;
-      font-size: 14.5px;
-      font-weight: 600;
+      font-size: 13.5px;
+      font-weight: 800;
       color: #3a2417;
-      letter-spacing: 0.7px;
+      letter-spacing: 0.3px;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 174px;
       margin-top: -1px;
     }
 
-    .btn-next-lvl {
+    .btn-next-pill {
       pointer-events: auto;
-      width: 72px;
+      min-width: 68px;
+      max-width: 84px;
       height: 36px;
+      padding: 0 11px;
+      border-radius: 999px;
+      border: 2.2px solid #442c1a;
+      background: linear-gradient(180deg, #fcf4e4 0%, #f1dfb8 100%);
+      box-shadow: 0 2.5px 0 #c9a778, 0 4px 5px rgba(68, 44, 26, 0.2);
+      color: #3a2417;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.2px;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.08s ease;
     }
+    .btn-next-pill:active { transform: translateY(1.5px) scale(0.96); }
 
     /* Row 2: Compact Authentic Plan-1 Hand-Drawn Boxes (true undistorted aspect ratio!) */
     .boxes-row {
@@ -197,10 +220,11 @@
     /* Exact Plan 1 pastel sticky label placed cleanly on front cream wall */
     .bin-sticker {
       position: absolute;
-      left: 20%;
-      right: 20%;
+      left: 16%;
+      right: 16%;
       bottom: 9%;
       height: 32%;
+      padding: 0 3px;
       border-radius: 5px;
       display: flex;
       flex-direction: column;
@@ -209,24 +233,29 @@
       pointer-events: none;
     }
     .bin-cat-name {
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 12px;
+      font-weight: 800;
       color: #362216;
       line-height: 1.12;
+      white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .bin-cat-count {
-      font-size: 11px;
-      font-weight: 600;
+      font-size: 10.5px;
+      font-weight: 700;
       color: #442c1c;
       font-variant-numeric: tabular-nums;
       line-height: 1.12;
     }
-    /* Ad-triggered "装满 📹" pill badge on top-left rim of active box (matching reference!) */
+    /* Ad-triggered "Fill 📹" pill badge on top-left rim of active box */
     .box-quick {
       position: absolute;
       top: 6%;
       left: -3%;
       height: 20px;
+      max-width: 96%;
       padding: 0 6px;
       border-radius: 999px;
       background: linear-gradient(180deg, #e79e66 0%, #d47f45 100%);
@@ -237,10 +266,11 @@
       justify-content: center;
       gap: 3px;
       color: #fffdf7;
-      font-size: 10px;
+      font-size: 9.5px;
       font-weight: 900;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.1px;
       line-height: 1;
+      white-space: nowrap;
       cursor: pointer;
       z-index: 4;
       font-family: inherit;
@@ -254,9 +284,9 @@
     }
     .bin-locked-label {
       position: absolute;
-      left: 12%;
-      right: 12%;
-      top: 50%;
+      left: 8%;
+      right: 8%;
+      top: 49%;
       bottom: 8%;
       display: flex;
       flex-direction: column;
@@ -265,9 +295,11 @@
       gap: 3px;
       pointer-events: none;
       color: #fff6e8;
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 900;
       text-shadow: 0 1.2px 0 rgba(56, 36, 20, 0.65);
+      text-align: center;
+      line-height: 1.1;
     }
     .bin-locked-label svg {
       width: 19px;
@@ -381,22 +413,25 @@
       bottom: -15px;
       transform: translateX(-50%);
       z-index: 6;
-      padding: 1.5px 5px;
+      max-width: 44px;
+      padding: 1.5px 4.5px;
       border-radius: 999px;
       border: 1.4px solid #442c1a;
       background: #fffaf0;
       color: #3e2715;
-      font-size: 9px;
+      font-size: 8.5px;
       font-weight: 900;
       line-height: 1.2;
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       box-shadow: 0 1.5px 0 rgba(68, 44, 26, 0.28);
       pointer-events: none;
     }
     .tray-cat-bubble.is-long {
-      font-size: 7.8px;
-      padding: 1.5px 3.5px;
-      letter-spacing: -0.35px;
+      font-size: 7.4px;
+      padding: 1.5px 3px;
+      letter-spacing: -0.3px;
     }
     .tray-cat-bubble::before {
       content: '';
@@ -848,13 +883,58 @@
       gap: 28px;
       padding: 4px 10px 8px;
     }
-    .home-logo-img {
-      width: min(84%, 306px);
-      height: auto;
-      display: block;
+    .logo-card-wrap {
+      position: relative;
+      width: min(86%, 308px);
+      aspect-ratio: 575 / 281;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       filter: drop-shadow(0 6px 10px rgba(68, 44, 26, 0.2));
       animation: homeLogoFloat 3.6s ease-in-out infinite;
       pointer-events: none;
+    }
+    .logo-card-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .logo-card-text {
+      position: relative;
+      z-index: 2;
+      width: 74%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      margin-top: 8%;
+      text-align: center;
+    }
+    .logo-main-txt {
+      font-size: clamp(28px, 8.6vw, 37px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: 1.2px;
+      color: #a9d9bf;
+      paint-order: stroke fill;
+      -webkit-text-stroke: 5.5px #442c1a;
+      filter: drop-shadow(0 2.5px 0 rgba(68, 44, 26, 0.24));
+      white-space: nowrap;
+    }
+    .logo-sub-txt {
+      font-size: 12.5px;
+      font-weight: 800;
+      letter-spacing: 1.1px;
+      color: #4a311d;
+      line-height: 1.1;
+      white-space: nowrap;
+      max-width: 84%;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     @keyframes homeLogoFloat {
       0%, 100% { transform: translateY(0px); }
@@ -1068,15 +1148,16 @@
     .settings-label-wrap {
       display: flex;
       align-items: center;
-      gap: 8px;
-      min-width: 82px;
+      gap: 7px;
+      min-width: 102px;
       color: #8a6443;
-      font-size: 17px;
+      font-size: 15.5px;
       font-weight: 800;
+      white-space: nowrap;
     }
     .settings-label-wrap svg {
-      width: 22px;
-      height: 22px;
+      width: 21px;
+      height: 21px;
       flex-shrink: 0;
     }
     .cute-slider-wrap {
@@ -1085,6 +1166,43 @@
       height: 30px;
       display: flex;
       align-items: center;
+    }
+    .cute-select-wrap {
+      position: relative;
+      flex: 1;
+      height: 34px;
+      display: flex;
+      align-items: center;
+    }
+    .cute-select {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 34px;
+      padding: 0 32px 0 12px;
+      border-radius: 10px;
+      border: 2px solid #596964;
+      background: #fff9ef;
+      box-shadow: 0 2px 0 rgba(74, 49, 29, 0.16);
+      color: #442c1a;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      outline: none;
+    }
+    .cute-select:focus {
+      border-color: #38b5ab;
+    }
+    .cute-select-arrow {
+      position: absolute;
+      right: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 12px;
+      height: 12px;
+      pointer-events: none;
+      color: #6d4f34;
     }
     .cute-range {
       -webkit-appearance: none;
@@ -1342,14 +1460,16 @@
       justify-content: center;
     }
     .fail-sticker-title {
-      font-size: 30px;
+      font-size: clamp(22px, 6.4vw, 29px);
       font-weight: 900;
       color: #6b6763;
-      letter-spacing: 3px;
+      letter-spacing: 1px;
       line-height: 1.1;
       paint-order: stroke fill;
-      -webkit-text-stroke: 6.5px #ffffff;
+      -webkit-text-stroke: 6px #ffffff;
       filter: drop-shadow(0 3px 0 #55483c);
+      max-width: 78%;
+      white-space: nowrap;
     }
     .fail-modal-actions {
       display: flex;
@@ -1362,6 +1482,7 @@
       width: 100%;
       max-width: 244px;
       height: 54px;
+      padding: 0 14px;
       border-radius: 14px;
       background: linear-gradient(180deg, #ffcf63 0%, #f5b335 100%);
       border: 2.5px solid #4a311d;
@@ -1377,8 +1498,9 @@
     .btn-fail-slot:active { transform: translateY(2px); }
     .btn-fail-restart {
       width: 100%;
-      max-width: 214px;
+      max-width: 224px;
       height: 54px;
+      padding: 0 14px;
       border-radius: 14px;
       background: linear-gradient(180deg, #6ee2d8 0%, #52cfc4 100%);
       border: 2.5px solid #2b6e68;
@@ -1393,7 +1515,7 @@
     }
     .btn-fail-restart:active { transform: translateY(2px); }
 
-    /* ===== Loading Screen (Sunlit Oak Wood + Logo + Cozy Progress Bar) ===== */
+    /* ===== Loading Screen (Sunlit Oak Wood + Dynamic Logo + Cozy Progress Bar) ===== */
     .loading-screen {
       position: absolute;
       inset: 0;
@@ -1497,7 +1619,7 @@
       font-size: 12.5px;
       font-weight: 800;
       color: #442c1a;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.3px;
     }
     .loading-pct {
       font-variant-numeric: tabular-nums;
@@ -1507,21 +1629,27 @@
       text-align: right;
     }
   </style>
-  <script type="module" crossorigin src="./chunks/index-WN51q447.js"></script>
+  <script type="module" crossorigin src="./chunks/index-Btq65pKH.js"></script>
 </head>
 <body>
   <div id="gameShell" class="game-shell">
     <!-- Loading Screen (Shown Until All Assets Finish Loading) -->
     <div id="loadingScreen" class="loading-screen" role="status" aria-live="polite">
       <div class="loading-logo-wrap">
-        <img class="home-logo-img" src="./assets/ui/home_logo.webp?v=ui3" alt="收纳日记 Tidy Diary" />
+        <div class="logo-card-wrap">
+          <img class="logo-card-bg" src="./assets/ui/home_logo_blank.webp?v=ui6" alt="" />
+          <div class="logo-card-text">
+            <span class="logo-main-txt" data-i18n="logoMain">Tidy Diary</span>
+            <span class="logo-sub-txt" data-i18n="logoSub">COZY SORTING</span>
+          </div>
+        </div>
       </div>
       <div class="loading-progress-wrap">
         <div class="loading-bar-track">
           <div id="loadingBarFill" class="loading-bar-fill"></div>
         </div>
         <div class="loading-meta">
-          <span id="loadingTip">整理小屋准备中...</span>
+          <span id="loadingTip">Opening your cozy room...</span>
           <span id="loadingPct" class="loading-pct">0%</span>
         </div>
       </div>
@@ -1529,38 +1657,36 @@
 
     <!-- Full-Bleed 100% Height PixiJS Playfield -->
     <div id="playfield" class="playfield">
-      <div id="panHintBadge" class="pan-hint-badge hidden">👈 左右拖动浏览大场景 👉</div>
+      <div id="panHintBadge" class="pan-hint-badge hidden" data-i18n="hudPanHint">👈 Drag left/right to explore 👉</div>
     </div>
 
-    <!-- Compact Frameless Floating HUD (100% Authentic Plan 1 Hand-Drawn Artwork!) -->
+    <!-- Compact Frameless Floating HUD -->
     <div id="floatingHud" class="floating-hud hidden">
       <div class="top-nav-row">
         <div class="nav-left">
-          <button id="btnSettings" title="设置" class="gear-btn" aria-label="设置" style="width:38px;height:38px;">
-            <img src="./assets/ui/btn_gear.webp?v=ui3" alt="设置" />
+          <button id="btnSettings" title="Settings" class="gear-btn" aria-label="Settings" style="width:38px;height:38px;">
+            <img src="./assets/ui/btn_gear.webp?v=ui3" alt="" />
           </button>
         </div>
 
         <div class="kraft-ribbon">
           <img class="kraft-ribbon-img" src="./assets/ui/title_ribbon.webp?v=ui2" alt="" />
-          <span id="levelTitle" class="ribbon-title">我的书桌 · 第1关</span>
+          <span id="levelTitle" class="ribbon-title">My Desk · Lv.1</span>
         </div>
 
-        <button id="btnLevelSwitch" title="下一关" class="ui-img-btn btn-next-lvl">
-          <img src="./assets/ui/btn_next.webp?v=ui2" alt="下一关" />
-        </button>
+        <button id="btnLevelSwitch" class="btn-next-pill" type="button" data-i18n="hudNext">Next</button>
       </div>
 
       <div id="boxesRow" class="boxes-row"></div>
       <div id="trayContainer" class="tray-container"></div>
     </div>
 
-    <!-- Home Screen (收纳日记 · Tidy Diary) -->
+    <!-- Home Screen -->
     <div id="homeScreen" class="home-screen hidden">
       <div class="home-top-bar">
         <div class="home-top-left">
-          <button id="btnHomeSettings" title="设置" class="gear-btn" aria-label="设置">
-            <img src="./assets/ui/btn_gear.webp?v=ui3" alt="设置" />
+          <button id="btnHomeSettings" title="Settings" class="gear-btn" aria-label="Settings">
+            <img src="./assets/ui/btn_gear.webp?v=ui3" alt="" />
           </button>
           <button id="btnHomeStamina" class="stamina-pill" type="button">
             <span class="stamina-heart" aria-hidden="true">
@@ -1569,30 +1695,36 @@
               </svg>
               <span class="stamina-heart-num">5</span>
             </span>
-            <span>体力已满</span>
+            <span data-i18n="homeStaminaFull">Full Energy</span>
           </button>
         </div>
 
-        <button id="btnHomeShare" class="home-share-wrap" type="button" title="分享游戏">
-          <img class="home-share-icon" src="./assets/ui/btn_share.webp?v=ui3" alt="分享" />
-          <span class="home-share-label">分享</span>
+        <button id="btnHomeShare" class="home-share-wrap" type="button" title="Share">
+          <img class="home-share-icon" src="./assets/ui/btn_share.webp?v=ui3" alt="" />
+          <span class="home-share-label" data-i18n="homeShare">Share</span>
         </button>
       </div>
 
       <div class="home-center-stack">
-        <img class="home-logo-img" src="./assets/ui/home_logo.webp?v=ui3" alt="收纳日记 Tidy Diary" />
+        <div class="logo-card-wrap">
+          <img class="logo-card-bg" src="./assets/ui/home_logo_blank.webp?v=ui6" alt="" />
+          <div class="logo-card-text">
+            <span class="logo-main-txt" data-i18n="logoMain">Tidy Diary</span>
+            <span class="logo-sub-txt" data-i18n="logoSub">COZY SORTING</span>
+          </div>
+        </div>
 
         <div class="home-btn-stack">
           <div class="home-start-group">
             <button id="btnStartGame" class="home-start-btn" type="button">
-              <span class="home-start-text">开始游戏</span>
+              <span class="home-start-text" data-i18n="homeStart">Start</span>
               <svg width="22" height="20" viewBox="0 0 36 34" aria-hidden="true">
                 <path d="M18 31 C18 31 4 22.4 4 12.2 C4 7.3 7.7 4 12.2 4 C15.0 4 17.0 5.5 18 7.4 C19.0 5.5 21.0 4 23.8 4 C28.3 4 32 7.3 32 12.2 C32 22.4 18 31 18 31 Z" fill="#f07e67" stroke="#442c1a" stroke-width="2.6" stroke-linejoin="round"/>
               </svg>
             </button>
             <div class="home-level-ribbon">
               <img src="./assets/ui/title_ribbon.webp?v=ui2" alt="" />
-              <span id="homeLevelLabel" class="home-level-caption">第 1 关 · 我的书桌</span>
+              <span id="homeLevelLabel" class="home-level-caption">Lv.1 · My Desk</span>
             </div>
           </div>
 
@@ -1606,15 +1738,15 @@
                 <circle cx="4.5" cy="18.5" r="2" stroke="#442c1a" stroke-width="2"/>
                 <rect x="10" y="16.8" width="13.5" height="3.4" rx="1.7" stroke="#442c1a" stroke-width="2"/>
               </svg>
-              <span class="home-levels-text">关卡列表</span>
+              <span class="home-levels-text" data-i18n="homeLevels">Levels</span>
             </button>
-            <span class="washi-new-tag">上新了</span>
+            <span class="washi-new-tag" data-i18n="homeNewTag">NEW</span>
           </div>
         </div>
       </div>
 
       <div class="home-bottom-mascot">
-        <img id="homeBearMascot" class="home-bear-img" src="./assets/ui/home_bear_box.webp?v=ui3" alt="小熊收纳盒" />
+        <img id="homeBearMascot" class="home-bear-img" src="./assets/ui/home_bear_box.webp?v=ui3" alt="" />
         <div id="homePlayerId" class="home-player-id">10248866</div>
       </div>
     </div>
@@ -1623,8 +1755,8 @@
     <div id="settingsOverlay" class="cute-modal-overlay hidden">
       <div class="cute-modal-card">
         <div class="cute-modal-banner">
-          <span class="sticker-title">设置</span>
-          <button id="btnSettingsClose" class="modal-close-x" type="button" aria-label="关闭">✕</button>
+          <span class="sticker-title" data-i18n="settingsTitle">Settings</span>
+          <button id="btnSettingsClose" class="modal-close-x" type="button" aria-label="Close">✕</button>
         </div>
         <div class="cute-modal-body">
           <div class="settings-rows">
@@ -1635,10 +1767,10 @@
                   <path d="M16.5 8.8C17.8 9.8 18.5 10.9 18.5 12C18.5 13.1 17.8 14.2 16.5 15.2" stroke="#9a7554" stroke-width="2.2" stroke-linecap="round"/>
                   <path d="M19.2 6.5C21 8.1 21.8 9.9 21.8 12C21.8 14.1 21 15.9 19.2 17.5" stroke="#9a7554" stroke-width="2.2" stroke-linecap="round"/>
                 </svg>
-                <span>音乐</span>
+                <span data-i18n="settingsMusic">Music</span>
               </div>
               <div class="cute-slider-wrap">
-                <input id="sliderMusic" class="cute-range" type="range" min="0" max="100" value="35" aria-label="音乐音量" />
+                <input id="sliderMusic" class="cute-range" type="range" min="0" max="100" value="35" aria-label="Music Volume" />
               </div>
             </div>
 
@@ -1649,10 +1781,28 @@
                   <circle cx="7.5" cy="17.5" r="2.8" fill="#9a7554"/>
                   <circle cx="17.5" cy="15.5" r="2.8" fill="#9a7554"/>
                 </svg>
-                <span>音效</span>
+                <span data-i18n="settingsSfx">SFX</span>
               </div>
               <div class="cute-slider-wrap">
-                <input id="sliderSfx" class="cute-range" type="range" min="0" max="100" value="100" aria-label="音效音量" />
+                <input id="sliderSfx" class="cute-range" type="range" min="0" max="100" value="100" aria-label="SFX Volume" />
+              </div>
+            </div>
+
+            <div class="settings-row">
+              <div class="settings-label-wrap">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9" stroke="#9a7554" stroke-width="2.1"/>
+                  <ellipse cx="12" cy="12" rx="4.2" ry="9" stroke="#9a7554" stroke-width="1.9"/>
+                  <line x1="3.4" y1="9.2" x2="20.6" y2="9.2" stroke="#9a7554" stroke-width="1.8"/>
+                  <line x1="3.4" y1="14.8" x2="20.6" y2="14.8" stroke="#9a7554" stroke-width="1.8"/>
+                </svg>
+                <span data-i18n="settingsLanguage">Language</span>
+              </div>
+              <div class="cute-select-wrap">
+                <select id="selectLanguage" class="cute-select" aria-label="Language"></select>
+                <svg class="cute-select-arrow" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M2 4 L6 8.5 L10 4" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
               </div>
             </div>
           </div>
@@ -1661,20 +1811,20 @@
 
           <div id="settingsLevelActions" class="settings-level-actions">
             <div class="settings-top-btns">
-              <button id="btnSettingsHome" class="btn-amber-square" type="button" title="返回主页" aria-label="返回主页">
+              <button id="btnSettingsHome" class="btn-amber-square" type="button" title="Home" aria-label="Home">
                 <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true">
                   <path d="M5 15 L16 5 L27 15 V27 H19.5 V19.5 H12.5 V27 H5 Z" fill="#fffdf8" stroke="#8f5b12" stroke-width="2" stroke-linejoin="round"/>
                 </svg>
               </button>
               <button id="btnSettingsReplay" class="btn-amber-wide" type="button">
-                <span class="btn-outlined-txt">重玩</span>
+                <span class="btn-outlined-txt" data-i18n="settingsReplay">Replay</span>
                 <svg width="22" height="20" viewBox="0 0 36 34" aria-hidden="true">
                   <path d="M18 31 C18 31 4 22.4 4 12.2 C4 7.3 7.7 4 12.2 4 C15.0 4 17.0 5.5 18 7.4 C19.0 5.5 21.0 4 23.8 4 C28.3 4 32 7.3 32 12.2 C32 22.4 18 31 18 31 Z" fill="#f25757" stroke="#5d3b1e" stroke-width="2.6" stroke-linejoin="round"/>
                 </svg>
               </button>
             </div>
             <button id="btnSettingsContinue" class="btn-continue-mint" type="button">
-              <span class="btn-outlined-txt btn-outlined-txt-mint">继续游戏</span>
+              <span class="btn-outlined-txt btn-outlined-txt-mint" data-i18n="settingsContinue">Continue</span>
               <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M6 4.8 C6 3.7 7.2 3 8.2 3.6 L19.6 10.8 C20.5 11.4 20.5 12.6 19.6 13.2 L8.2 20.4 C7.2 21 6 20.3 6 19.2 Z" fill="#fffdf8" stroke="#1f5c57" stroke-width="2.2" stroke-linejoin="round"/>
               </svg>
@@ -1683,13 +1833,13 @@
 
           <div id="settingsHomeActions" class="hidden">
             <button id="btnSettingsDone" class="btn-continue-mint" type="button">
-              <span class="btn-outlined-txt btn-outlined-txt-mint">好的</span>
+              <span class="btn-outlined-txt btn-outlined-txt-mint" data-i18n="settingsDone">OK</span>
             </button>
           </div>
 
           <div class="settings-footer-meta">
             <span id="settingsPlayerId">ID: 10248866</span>
-            <span>0.2.22</span>
+            <span>0.3.0</span>
           </div>
         </div>
       </div>
@@ -1699,8 +1849,8 @@
     <div id="levelListOverlay" class="cute-modal-overlay hidden">
       <div class="cute-modal-card">
         <div class="cute-modal-banner">
-          <span class="sticker-title">关卡列表</span>
-          <button id="btnLevelListClose" class="modal-close-x" type="button" aria-label="关闭">✕</button>
+          <span class="sticker-title" data-i18n="levelsTitle">Levels</span>
+          <button id="btnLevelListClose" class="modal-close-x" type="button" aria-label="Close">✕</button>
         </div>
         <div class="cute-modal-body">
           <div id="levelListItems" class="level-list-items"></div>
@@ -1712,13 +1862,13 @@
     <div id="failOverlay" class="cute-modal-overlay hidden">
       <div class="cute-modal-card">
         <div class="fail-modal-banner">
-          <span class="fail-sticker-title">失败</span>
-          <button id="btnFailClose" class="modal-close-x" type="button" aria-label="关闭">✕</button>
+          <span class="fail-sticker-title" data-i18n="failTitle">Out of Space</span>
+          <button id="btnFailClose" class="modal-close-x" type="button" aria-label="Close">✕</button>
         </div>
         <div class="cute-modal-body">
           <div class="fail-modal-actions">
             <button id="btnFailExtraSlot" class="btn-fail-slot" type="button">
-              <span class="btn-outlined-txt">额外槽位</span>
+              <span class="btn-outlined-txt" data-i18n="failExtraSlot">Extra Slot</span>
               <svg width="24" height="18" viewBox="0 0 28 20" aria-hidden="true">
                 <rect x="1.5" y="2" width="18" height="16" rx="4" fill="#9c6a27" stroke="#5d3b1e" stroke-width="1.6"/>
                 <polygon points="19.5,7.2 26.5,3.4 26.5,16.6 19.5,12.8" fill="#9c6a27" stroke="#5d3b1e" stroke-width="1.6" stroke-linejoin="round"/>
@@ -1726,7 +1876,7 @@
               </svg>
             </button>
             <button id="btnFailRestart" class="btn-fail-restart" type="button">
-              <span class="btn-outlined-txt btn-outlined-txt-mint">重新开始</span>
+              <span class="btn-outlined-txt btn-outlined-txt-mint" data-i18n="failRestart">Restart</span>
               <svg width="22" height="20" viewBox="0 0 36 34" aria-hidden="true">
                 <path d="M18 31 C18 31 4 22.4 4 12.2 C4 7.3 7.7 4 12.2 4 C15.0 4 17.0 5.5 18 7.4 C19.0 5.5 21.0 4 23.8 4 C28.3 4 32 7.3 32 12.2 C32 22.4 18 31 18 31 Z" fill="#f25757" stroke="#442c1a" stroke-width="2.6" stroke-linejoin="round"/>
               </svg>
@@ -1763,44 +1913,44 @@
           <path d="M12 4 H22 V19 H30 L17 34 L4 19 H12 Z" fill="#fffdf8" stroke="#4a311d" stroke-width="3" stroke-linejoin="round"/>
         </svg>
       </div>
-      <button id="btnSkipTut" class="btn-skip-tut">跳过引导</button>
+      <button id="btnSkipTut" class="btn-skip-tut" data-i18n="tutSkip">Skip</button>
     </div>
 
-    <!-- Level 2 Cute "提示" Pinch-to-Zoom Modal -->
+    <!-- Level 2 Pinch-to-Zoom Tip Modal -->
     <div id="zoomGuideOverlay" class="cute-modal-overlay hidden">
       <div class="cute-modal-card">
         <div class="cute-modal-banner">
-          <span class="sticker-title">提示</span>
+          <span class="sticker-title" data-i18n="zoomTitle">Tip</span>
         </div>
         <div class="cute-modal-body">
-          <div style="font-size:14px;font-weight:800;color:#6e4f32;margin-bottom:12px;">
-            双指可以放大和缩小场景屏幕，单指可左右拖动
+          <div style="font-size:14px;font-weight:800;color:#6e4f32;margin-bottom:12px;" data-i18n="zoomDesc">
+            Pinch to zoom in/out, and drag to pan around the room
           </div>
           <div class="modal-preview-frame">
-            <img id="zoomGuideBg" class="zoom-guide-bg" src="./assets/backgrounds/bed_topdown.webp?v=td6" alt="房间预览" />
+            <img id="zoomGuideBg" class="zoom-guide-bg" src="./assets/backgrounds/bed_topdown.webp?v=td6" alt="" />
             <div class="hand-gesture-layer">
               <canvas id="zoomGuideCanvas" class="zoom-guide-canvas" aria-hidden="true"></canvas>
             </div>
           </div>
-          <button id="btnDismissZoomGuide" class="btn-mint-ok">好的</button>
+          <button id="btnDismissZoomGuide" class="btn-mint-ok" data-i18n="zoomOk">Got it</button>
         </div>
       </div>
     </div>
 
-    <!-- Cute "整理完毕!" Win / Lose Modal -->
+    <!-- Win Modal -->
     <div id="modalOverlay" class="cute-modal-overlay hidden">
       <div class="cute-modal-card">
         <div class="cute-modal-banner">
           <span class="banner-star" style="left:16px;top:12px;">⭐</span>
           <span class="banner-star" style="right:18px;bottom:8px;animation-delay:0.5s;">⭐</span>
-          <span id="modalTitle" class="sticker-title">整理完毕!</span>
+          <span id="modalTitle" class="sticker-title" data-i18n="winTitle">All Tidy!</span>
         </div>
         <div class="cute-modal-body">
           <div id="modalRoomWrap" class="modal-preview-frame">
-            <img id="modalRoomPreview" src="./assets/backgrounds/desk_topdown.webp?v=td6" alt="整理后的桌面" />
+            <img id="modalRoomPreview" src="./assets/backgrounds/desk_topdown.webp?v=td6" alt="" />
           </div>
           <div id="modalWinInfo">
-            <div class="time-label">本次整理耗时</div>
+            <div class="time-label" data-i18n="winTimeLabel">Time Used</div>
             <div class="time-pill">
               <span class="time-clock-dot">🕒</span>
               <span id="modalTimeVal">00:00</span>
