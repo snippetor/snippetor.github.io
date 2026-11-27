@@ -340,7 +340,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      overflow: visible;
     }
     .tray-slot-unlocked-bg {
       position: absolute;
@@ -360,6 +360,42 @@
       display: block;
       pointer-events: none;
       filter: drop-shadow(0 1.5px 1.5px rgba(64, 38, 18, 0.3));
+    }
+    .tray-cat-bubble {
+      position: absolute;
+      left: 50%;
+      bottom: -15px;
+      transform: translateX(-50%);
+      z-index: 6;
+      padding: 1.5px 5px;
+      border-radius: 999px;
+      border: 1.4px solid #442c1a;
+      background: #fffaf0;
+      color: #3e2715;
+      font-size: 9px;
+      font-weight: 900;
+      line-height: 1.2;
+      white-space: nowrap;
+      box-shadow: 0 1.5px 0 rgba(68, 44, 26, 0.28);
+      pointer-events: none;
+    }
+    .tray-cat-bubble.is-long {
+      font-size: 7.8px;
+      padding: 1.5px 3.5px;
+      letter-spacing: -0.35px;
+    }
+    .tray-cat-bubble::before {
+      content: '';
+      position: absolute;
+      top: -3.4px;
+      left: 50%;
+      width: 5px;
+      height: 5px;
+      background: inherit;
+      border-left: 1.4px solid #442c1a;
+      border-top: 1.4px solid #442c1a;
+      transform: translateX(-50%) rotate(45deg);
+      pointer-events: none;
     }
     .tray-slot-locked {
       position: relative;
@@ -1457,7 +1493,7 @@
       text-align: right;
     }
   </style>
-  <script type="module" crossorigin src="./chunks/index-BFgkfjEn.js"></script>
+  <script type="module" crossorigin src="./chunks/index-BTaP4yqj.js"></script>
 </head>
 <body>
   <div id="gameShell" class="game-shell">
