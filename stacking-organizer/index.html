@@ -1466,6 +1466,468 @@
       border-color: #276e68;
     }
 
+    /* ===== 8-Chapter Memory Diary Directory ===== */
+    .diary-modal-card {
+      width: min(94%, 384px);
+      max-height: 86dvh;
+      display: flex;
+      flex-direction: column;
+    }
+    .diary-modal-body {
+      padding: 12px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: hidden;
+    }
+    .diary-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+    }
+    .diary-story-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #fff6e2;
+      border: 1.8px solid #c9a679;
+      color: #5c3d22;
+      font-size: 11.5px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: transform 0.08s ease, background 0.12s ease;
+    }
+    .diary-story-btn:active { transform: translateY(1px); }
+    .diary-story-btn.is-gold {
+      background: #ffe9b5;
+      border-color: #c88d2c;
+      color: #6b4108;
+    }
+    .diary-progress-pill {
+      font-size: 11.5px;
+      font-weight: 900;
+      color: #6b4b2e;
+      background: #f3e6d3;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    .diary-chapter-tabs {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 2px 1px 6px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .diary-chapter-tabs::-webkit-scrollbar { display: none; }
+    .diary-ch-tab {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 10px;
+      border-radius: 12px;
+      background: #f8f0e2;
+      border: 2px solid #dec9ad;
+      color: #6e4e31;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 0.08s ease, background 0.12s ease, border-color 0.12s ease;
+    }
+    .diary-ch-tab:active { transform: scale(0.97); }
+    .diary-ch-tab.is-active {
+      background: #fffdf8;
+      border-color: #4a311d;
+      color: #3d2514;
+      box-shadow: 0 2.5px 0 #4a311d;
+    }
+    .diary-ch-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      border: 1.5px solid #4a311d;
+      flex-shrink: 0;
+    }
+    .diary-ch-count {
+      font-size: 10.5px;
+      font-weight: 800;
+      opacity: 0.72;
+      font-variant-numeric: tabular-nums;
+    }
+    .diary-chapter-hero {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 11px;
+      border-radius: 14px;
+      background: #fff8ea;
+      border: 2px solid #dfcaa9;
+    }
+    .diary-hero-thumb {
+      width: 52px;
+      height: 52px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #4a311d;
+      flex-shrink: 0;
+      background: #e8d2b0;
+    }
+    .diary-hero-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 62%;
+      display: block;
+    }
+    .diary-hero-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .diary-hero-head {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 3px;
+    }
+    .diary-hero-title {
+      font-size: 14.5px;
+      font-weight: 900;
+      color: #442c1a;
+      line-height: 1.2;
+    }
+    .diary-hero-stage {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #5c3d22;
+      padding: 1.5px 7px;
+      border-radius: 999px;
+      border: 1.4px solid rgba(74, 49, 29, 0.35);
+      white-space: nowrap;
+    }
+    .diary-hero-epigraph {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #7b5a3c;
+      line-height: 1.38;
+      font-style: italic;
+    }
+    .diary-level-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 7px;
+      max-height: 248px;
+      overflow-y: auto;
+      padding: 2px 2px 6px;
+    }
+    .diary-lvl-tile {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1px;
+      height: 50px;
+      border-radius: 12px;
+      background: #fffaf0;
+      border: 2px solid #dcc5a6;
+      box-shadow: 0 2.5px 0 #dcc5a6;
+      color: #4a311d;
+      cursor: pointer;
+      transition: transform 0.08s ease, border-color 0.12s ease;
+    }
+    .diary-lvl-tile:active { transform: translateY(1.5px); }
+    .diary-lvl-tile.is-cleared {
+      background: #f0fbf5;
+      border-color: #79c9a8;
+      box-shadow: 0 2.5px 0 #79c9a8;
+    }
+    .diary-lvl-tile.is-current {
+      background: #e4f8f5;
+      border-color: #2fafa4;
+      box-shadow: 0 2.5px 0 #2fafa4, 0 0 0 2px rgba(79, 212, 203, 0.35);
+    }
+    .diary-lvl-tile.is-boss {
+      background: #fff3da;
+      border-color: #dfa145;
+      box-shadow: 0 2.5px 0 #dfa145;
+    }
+    .diary-lvl-tile.is-finale {
+      background: linear-gradient(180deg, #fff5cf 0%, #ffd982 100%);
+      border-color: #b56c18;
+      box-shadow: 0 2.5px 0 #b56c18;
+    }
+    .diary-lvl-num {
+      font-size: 14.5px;
+      font-weight: 900;
+      line-height: 1.05;
+      font-variant-numeric: tabular-nums;
+    }
+    .diary-lvl-mark {
+      font-size: 10px;
+      line-height: 1;
+      height: 11px;
+      color: #c28529;
+      font-weight: 800;
+    }
+    .diary-lvl-tile.is-cleared .diary-lvl-mark { color: #2b9a72; }
+    .diary-lvl-tile.is-finale .diary-lvl-mark { color: #b53a2a; }
+
+    /* ===== Full-Screen Story Cutscene Overlay (Prologue & Epilogue) ===== */
+    .story-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 420;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      background: #f6ead6;
+      opacity: 1;
+      transition: opacity 0.45s ease;
+      cursor: pointer;
+    }
+    .story-overlay.hidden { display: none; }
+    .story-overlay.fade-out { opacity: 0; pointer-events: none; }
+    .story-bg-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center bottom;
+      transform: scale(1);
+      animation: storyKenBurns 18s ease-out forwards;
+      pointer-events: none;
+    }
+    @keyframes storyKenBurns {
+      0% { transform: scale(1.0); }
+      100% { transform: scale(1.07); }
+    }
+    .story-veil {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(253, 246, 234, 0.94) 0%,
+        rgba(253, 246, 234, 0.87) 42%,
+        rgba(253, 246, 234, 0.45) 66%,
+        rgba(46, 31, 18, 0.16) 100%
+      );
+      pointer-events: none;
+    }
+    .story-top-row {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: max(14px, env(safe-area-inset-top)) 16px 0;
+    }
+    .story-eyebrow {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      color: #7c5634;
+      background: rgba(255, 251, 242, 0.85);
+      border: 1.5px solid rgba(124, 86, 52, 0.25);
+      padding: 4px 11px;
+      border-radius: 999px;
+    }
+    .story-skip-btn {
+      padding: 5px 13px;
+      border-radius: 999px;
+      background: rgba(255, 250, 240, 0.88);
+      border: 1.8px solid #6b4b2e;
+      color: #4a311d;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .story-skip-btn:active { transform: scale(0.96); }
+    .story-body {
+      position: relative;
+      z-index: 2;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 14px 22px 10px;
+      overflow-y: auto;
+    }
+    .story-title {
+      font-size: 24px;
+      font-weight: 900;
+      color: #442c1a;
+      margin: 0 0 12px;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+    .story-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .story-line {
+      font-size: 14.5px;
+      font-weight: 700;
+      line-height: 1.56;
+      color: #4b311c;
+      opacity: 0;
+      transform: translateY(8px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+      text-shadow: 0 1px 6px rgba(255, 250, 240, 0.9);
+    }
+    .story-line.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .story-memorial-card {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: rgba(255, 251, 242, 0.92);
+      border: 2px solid #cfa97a;
+      box-shadow: 0 6px 18px rgba(74, 49, 29, 0.16);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .story-memorial-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .story-memorial-title {
+      font-size: 12px;
+      font-weight: 900;
+      color: #8c5c2b;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .story-memorial-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      text-align: center;
+    }
+    .story-stat-val {
+      font-size: 18px;
+      font-weight: 900;
+      color: #442c1a;
+      font-variant-numeric: tabular-nums;
+    }
+    .story-stat-lbl {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #7c5c3e;
+      margin-top: 2px;
+    }
+    .story-footer {
+      position: relative;
+      z-index: 2;
+      padding: 10px 22px max(22px, env(safe-area-inset-bottom));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .story-tap-hint {
+      font-size: 12.5px;
+      font-weight: 800;
+      color: #fffaf0;
+      background: rgba(68, 44, 26, 0.55);
+      padding: 5px 14px;
+      border-radius: 999px;
+      animation: storyPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes storyPulse {
+      0%, 100% { opacity: 0.65; }
+      50% { opacity: 1; }
+    }
+    .story-cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+    }
+    .story-cta-primary {
+      padding: 12px 28px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #9ce0d0 0%, #71c9b5 100%);
+      border: 2.6px solid #442c1a;
+      box-shadow: 0 4px 0 #3f7e70, 0 8px 18px rgba(40, 24, 12, 0.28);
+      color: #3b2414;
+      font-size: 16.5px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .story-cta-primary:active { transform: translateY(2px); }
+    .story-cta-secondary {
+      padding: 11px 18px;
+      border-radius: 999px;
+      background: #fff6e1;
+      border: 2.4px solid #442c1a;
+      box-shadow: 0 4px 0 #b89468;
+      color: #442c1a;
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+    .story-cta-secondary:active { transform: translateY(2px); }
+
+    /* ===== Floating Chapter Opening Banner (Non-blocking) ===== */
+    .chapter-banner {
+      position: absolute;
+      left: 50%;
+      top: 252px;
+      transform: translateX(-50%) translateY(-8px);
+      width: min(88%, 336px);
+      z-index: 95;
+      background: rgba(255, 250, 240, 0.96);
+      border: 2.4px solid #4a311d;
+      border-radius: 16px;
+      box-shadow: 0 6px 0 rgba(74, 49, 29, 0.22), 0 12px 24px rgba(50, 30, 14, 0.2);
+      padding: 10px 14px;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .chapter-banner.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+      cursor: pointer;
+    }
+    .chapter-banner-eyebrow {
+      font-size: 11px;
+      font-weight: 900;
+      color: #8c5c2b;
+      letter-spacing: 0.6px;
+      margin-bottom: 2px;
+    }
+    .chapter-banner-title {
+      font-size: 15.5px;
+      font-weight: 900;
+      color: #442c1a;
+      margin-bottom: 3px;
+    }
+    .chapter-banner-quote {
+      font-size: 12px;
+      font-weight: 700;
+      color: #6f4e31;
+      font-style: italic;
+      line-height: 1.38;
+    }
+
     /* ===== Fail Modal (Matching Reference Screenshot) ===== */
     .fail-modal-banner {
       position: relative;
@@ -1647,7 +2109,7 @@
       text-align: right;
     }
   </style>
-  <script type="module" crossorigin src="./chunks/index-WQcxZeAl.js"></script>
+  <script type="module" crossorigin src="./chunks/index-DvOal69u.js"></script>
 </head>
 <body>
   <div id="gameShell" class="game-shell">
@@ -1857,23 +2319,75 @@
 
           <div class="settings-footer-meta">
             <span id="settingsPlayerId">ID: 10248866</span>
-            <span>0.3.0</span>
+            <span>0.4.0</span>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Level List Modal -->
+    <!-- 8-Chapter Memory Diary Directory Modal -->
     <div id="levelListOverlay" class="cute-modal-overlay hidden">
-      <div class="cute-modal-card">
+      <div class="cute-modal-card diary-modal-card">
         <div class="cute-modal-banner">
-          <span class="sticker-title" data-i18n="levelsTitle">Levels</span>
+          <span id="diaryModalTitle" class="sticker-title">A Mother's Life</span>
           <button id="btnLevelListClose" class="modal-close-x" type="button" aria-label="Close">✕</button>
         </div>
-        <div class="cute-modal-body">
-          <div id="levelListItems" class="level-list-items"></div>
+        <div class="diary-modal-body">
+          <div class="diary-top-bar">
+            <button id="btnDiaryPrologue" class="diary-story-btn" type="button">📖 <span id="diaryPrologueLabel">Prologue</span></button>
+            <span id="diaryProgressPill" class="diary-progress-pill">0 / 200</span>
+            <button id="btnDiaryEpilogue" class="diary-story-btn is-gold" type="button">🍁 <span id="diaryEpilogueLabel">Epilogue</span></button>
+          </div>
+          <div id="diaryChapterTabs" class="diary-chapter-tabs"></div>
+          <div id="diaryChapterHero" class="diary-chapter-hero"></div>
+          <div id="diaryLevelGrid" class="diary-level-grid"></div>
         </div>
       </div>
+    </div>
+
+    <!-- Full-Screen Story Cutscene Overlay (Prologue & Epilogue) -->
+    <div id="storyOverlay" class="story-overlay hidden">
+      <img id="storyBgImg" class="story-bg-img" src="./assets/story/prologue_bg.webp?v=st1" alt="" />
+      <div class="story-veil"></div>
+      <div class="story-top-row">
+        <span id="storyEyebrow" class="story-eyebrow">PROLOGUE · A MOTHER'S LIFE</span>
+        <button id="btnStorySkip" class="story-skip-btn" type="button">Skip</button>
+      </div>
+      <div class="story-body">
+        <h2 id="storyTitle" class="story-title">Page One</h2>
+        <div id="storyLines" class="story-lines"></div>
+        <div id="storyMemorialCard" class="story-memorial-card hidden">
+          <div id="storyMemorialTitle" class="story-memorial-title">Memory Keepsake</div>
+          <div class="story-memorial-stats">
+            <div>
+              <div id="storyStatItems" class="story-stat-val">0</div>
+              <div id="storyStatItemsLbl" class="story-stat-lbl">Items Tidied</div>
+            </div>
+            <div>
+              <div id="storyStatChapters" class="story-stat-val">8/8</div>
+              <div id="storyStatChaptersLbl" class="story-stat-lbl">Chapters</div>
+            </div>
+            <div>
+              <div id="storyStatLevels" class="story-stat-val">1/200</div>
+              <div id="storyStatLevelsLbl" class="story-stat-lbl">Pages</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="story-footer">
+        <div id="storyTapHint" class="story-tap-hint">Tap anywhere to continue</div>
+        <div id="storyCtaRow" class="story-cta-row hidden">
+          <button id="btnStoryShare" class="story-cta-secondary hidden" type="button">Share Keepsake</button>
+          <button id="btnStoryPrimary" class="story-cta-primary" type="button">Open Page 1</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating Chapter Opening Ribbon -->
+    <div id="chapterBanner" class="chapter-banner">
+      <div id="chapterBannerEyebrow" class="chapter-banner-eyebrow"></div>
+      <div id="chapterBannerTitle" class="chapter-banner-title"></div>
+      <div id="chapterBannerQuote" class="chapter-banner-quote"></div>
     </div>
 
     <!-- Fail Modal (When Temporary Tray Slots Are Full) -->
