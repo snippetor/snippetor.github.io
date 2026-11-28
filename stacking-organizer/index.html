@@ -267,6 +267,91 @@
       font-variant-numeric: tabular-nums;
       line-height: 1.12;
     }
+    .bin-active {
+      cursor: pointer;
+    }
+    .bin-cat-preview {
+      position: absolute;
+      top: 10%;
+      right: 11%;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      z-index: 2;
+      filter: drop-shadow(0 1.5px 1.5px rgba(68, 44, 26, 0.28));
+    }
+    .bin-cat-preview img,
+    .bin-cat-preview canvas {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .box-preview-pop {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%) translateY(-4px);
+      z-index: 88;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      max-width: calc(100% - 24px);
+      padding: 7px 12px;
+      border-radius: 16px;
+      background: rgba(255, 250, 240, 0.97);
+      border: 2.2px solid #442c1a;
+      box-shadow: 0 5px 0 rgba(68, 44, 26, 0.18), 0 10px 22px rgba(40, 24, 10, 0.22);
+      pointer-events: auto;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.16s ease, transform 0.16s ease;
+    }
+    .box-preview-pop.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    .box-preview-pop.hidden {
+      display: none;
+    }
+    .box-preview-title {
+      font-size: 12px;
+      font-weight: 900;
+      color: #442c1a;
+      padding: 3px 8px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .box-preview-icons {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .box-preview-icons::-webkit-scrollbar { display: none; }
+    .box-preview-item {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: #fff6e5;
+      border: 1.5px solid #e3cfb3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3px;
+      flex-shrink: 0;
+    }
+    .box-preview-item img,
+    .box-preview-item canvas {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
     /* Ad-triggered "Fill 📹" pill badge on top-left rim of active box */
     .box-quick {
       position: absolute;
@@ -2161,7 +2246,7 @@
       text-align: right;
     }
   </style>
-  <script type="module" crossorigin src="./chunks/index-Dm-P0aUu.js"></script>
+  <script type="module" crossorigin src="./chunks/index-Cca64XVR.js"></script>
 </head>
 <body>
   <div id="gameShell" class="game-shell">
@@ -2439,6 +2524,9 @@
       <div id="chapterBannerTitle" class="chapter-banner-title"></div>
       <div id="chapterBannerQuote" class="chapter-banner-quote"></div>
     </div>
+
+    <!-- Tap-Box Category Variant Preview Popover -->
+    <div id="boxPreviewPopover" class="box-preview-pop hidden" role="status" aria-live="polite"></div>
 
     <!-- Fail Modal (When Temporary Tray Slots Are Full) -->
     <div id="failOverlay" class="cute-modal-overlay hidden">
