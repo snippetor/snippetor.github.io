@@ -1099,10 +1099,11 @@
       flex-shrink: 0;
     }
     .home-levels-text {
-      font-size: 21px;
+      font-size: clamp(16.5px, 4.6vw, 20px);
       font-weight: 900;
       color: #3a2417;
-      letter-spacing: 2px;
+      letter-spacing: 0.6px;
+      white-space: nowrap;
     }
 
     .washi-new-tag {
@@ -1129,15 +1130,29 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-bottom: 6px;
+      gap: 4px;
+      padding-bottom: 4px;
     }
     .home-bear-img {
-      width: 96px;
-      height: auto;
+      width: 112px;
+      height: 112px;
+      object-fit: contain;
       display: block;
       filter: drop-shadow(0 6px 6px rgba(68, 44, 26, 0.22));
       cursor: pointer;
       transition: transform 0.16s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .home-bear-chapter-pill {
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: rgba(255, 248, 232, 0.9);
+      border: 1.6px solid #442c1a;
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #442c1a;
+      letter-spacing: 0.3px;
+      box-shadow: 0 2px 0 rgba(68, 44, 26, 0.14);
+      pointer-events: none;
     }
     .home-bear-img:active { transform: scale(1.08) translateY(-4px); }
     .home-player-id {
@@ -1571,20 +1586,25 @@
       border: 2px solid #dfcaa9;
     }
     .diary-hero-thumb {
-      width: 52px;
-      height: 52px;
-      border-radius: 10px;
+      width: 68px;
+      height: 68px;
+      padding: 4px;
+      border-radius: 14px;
       overflow: hidden;
       border: 2px solid #4a311d;
       flex-shrink: 0;
-      background: #e8d2b0;
+      background: #f5e6cc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.55);
     }
     .diary-hero-thumb img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
-      object-position: center 62%;
+      object-fit: contain;
       display: block;
+      filter: drop-shadow(0 2px 2px rgba(68, 44, 26, 0.18));
     }
     .diary-hero-info {
       flex: 1;
@@ -2127,7 +2147,7 @@
       text-align: right;
     }
   </style>
-  <script type="module" crossorigin src="./chunks/index-C_ruweCA.js"></script>
+  <script type="module" crossorigin src="./chunks/index-Ce0DmtyX.js"></script>
 </head>
 <body>
   <div id="gameShell" class="game-shell">
@@ -2229,14 +2249,11 @@
           <div class="home-levels-wrap">
             <button id="btnLevelList" class="home-levels-btn" type="button">
               <svg viewBox="0 0 26 24" fill="none" aria-hidden="true">
-                <circle cx="4.5" cy="5.5" r="2" stroke="#442c1a" stroke-width="2"/>
-                <rect x="10" y="3.8" width="13.5" height="3.4" rx="1.7" stroke="#442c1a" stroke-width="2"/>
-                <circle cx="4.5" cy="12" r="2" stroke="#442c1a" stroke-width="2"/>
-                <rect x="10" y="10.3" width="13.5" height="3.4" rx="1.7" stroke="#442c1a" stroke-width="2"/>
-                <circle cx="4.5" cy="18.5" r="2" stroke="#442c1a" stroke-width="2"/>
-                <rect x="10" y="16.8" width="13.5" height="3.4" rx="1.7" stroke="#442c1a" stroke-width="2"/>
+                <path d="M5 4.2 C5 3.1 5.9 2.2 7 2.2 H19.5 C20.6 2.2 21.5 3.1 21.5 4.2 V19.8 C21.5 20.9 20.6 21.8 19.5 21.8 H7 C5.9 21.8 5 20.9 5 19.8 Z" fill="#fff7e2" stroke="#442c1a" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M8.5 2.2 V21.8" stroke="#442c1a" stroke-width="1.8"/>
+                <path d="M12 8.2 H18 M12 12.2 H18 M12 16.2 H16" stroke="#442c1a" stroke-width="1.8" stroke-linecap="round"/>
               </svg>
-              <span class="home-levels-text" data-i18n="homeLevels">Levels</span>
+              <span class="home-levels-text" data-i18n="homeLevels">Memory Diary</span>
             </button>
             <span class="washi-new-tag" data-i18n="homeNewTag">NEW</span>
           </div>
@@ -2244,7 +2261,8 @@
       </div>
 
       <div class="home-bottom-mascot">
-        <img id="homeBearMascot" class="home-bear-img" src="./assets/ui/home_bear_box.webp?v=ui3" alt="" />
+        <img id="homeBearMascot" class="home-bear-img" src="./assets/ui/bear_ch1.webp?v=td11" alt="" />
+        <div id="homeBearChapterPill" class="home-bear-chapter-pill">Ch.1 · First Cry &amp; Cradle</div>
         <div id="homePlayerId" class="home-player-id">10248866</div>
       </div>
     </div>
@@ -2347,7 +2365,7 @@
     <div id="levelListOverlay" class="cute-modal-overlay hidden">
       <div class="cute-modal-card diary-modal-card">
         <div class="cute-modal-banner">
-          <span id="diaryModalTitle" class="sticker-title">A Mother's Life</span>
+          <span id="diaryModalTitle" class="sticker-title">Memory Diary</span>
           <button id="btnLevelListClose" class="modal-close-x" type="button" aria-label="Close">✕</button>
         </div>
         <div class="diary-modal-body">
