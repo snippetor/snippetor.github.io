@@ -298,6 +298,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
+      width: max-content;
       max-width: calc(100% - 24px);
       padding: 7px 12px;
       border-radius: 16px;
@@ -327,22 +328,22 @@
     }
     .box-preview-icons {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      gap: 5px;
-      overflow-x: auto;
-      scrollbar-width: none;
+      justify-content: flex-start;
+      gap: 4px;
+      max-width: 248px;
     }
-    .box-preview-icons::-webkit-scrollbar { display: none; }
     .box-preview-item {
-      width: 34px;
-      height: 34px;
-      border-radius: 9px;
+      width: 31px;
+      height: 31px;
+      border-radius: 8px;
       background: #fff6e5;
       border: 1.5px solid #e3cfb3;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 3px;
+      padding: 2.5px;
       flex-shrink: 0;
     }
     .box-preview-item img,
@@ -2246,7 +2247,7 @@
       text-align: right;
     }
   </style>
-  <script type="module" crossorigin src="./chunks/index-Cca64XVR.js"></script>
+  <script type="module" crossorigin src="./chunks/index-W21OB03P.js"></script>
 </head>
 <body>
   <div id="gameShell" class="game-shell">
