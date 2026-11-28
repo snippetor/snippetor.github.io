@@ -135,6 +135,133 @@
       width: 36px;
       height: 36px;
     }
+    .info-circle-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 999px;
+      border: 2.2px solid #442c1a;
+      background: linear-gradient(180deg, #fff8e6 0%, #f4ddb2 100%);
+      box-shadow: 0 2.5px 0 #c9a778, 0 4px 5px rgba(68, 44, 26, 0.2);
+      color: #442c1a;
+      font-size: 16px;
+      font-weight: 900;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+      transition: transform 0.08s ease, background 0.14s ease;
+    }
+    .info-circle-btn:active { transform: translateY(1.5px) scale(0.94); }
+    .info-circle-btn.is-open {
+      background: linear-gradient(180deg, #ffe294 0%, #f5c252 100%);
+    }
+
+    /* Star Time Goal Info Popover */
+    .star-info-pop {
+      position: absolute;
+      left: 12px;
+      top: 54px;
+      width: min(264px, calc(100% - 24px));
+      z-index: 89;
+      padding: 11px 13px 10px;
+      border-radius: 16px;
+      background: rgba(255, 250, 240, 0.98);
+      border: 2.2px solid #442c1a;
+      box-shadow: 0 5px 0 rgba(68, 44, 26, 0.18), 0 12px 24px rgba(40, 24, 10, 0.24);
+      pointer-events: auto;
+      opacity: 0;
+      transform: translateY(-6px) scale(0.97);
+      transform-origin: 48px top;
+      transition: opacity 0.16s ease, transform 0.16s ease;
+    }
+    .star-info-pop::before {
+      content: '';
+      position: absolute;
+      top: -7px;
+      left: 48px;
+      width: 11px;
+      height: 11px;
+      background: #fffaf0;
+      border-left: 2.2px solid #442c1a;
+      border-top: 2.2px solid #442c1a;
+      transform: rotate(45deg);
+    }
+    .star-info-pop.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    .star-info-pop.hidden { display: none; }
+    .star-info-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 8px;
+      padding-bottom: 6px;
+      border-bottom: 1.5px dashed #e3cfb3;
+    }
+    .star-info-title {
+      font-size: 13px;
+      font-weight: 900;
+      color: #442c1a;
+    }
+    .star-info-meta {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #8c6a4a;
+      white-space: nowrap;
+    }
+    .star-info-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+    .star-info-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 8px;
+      border-radius: 10px;
+      background: #f8efdf;
+      border: 1.5px solid transparent;
+      font-size: 12px;
+      font-weight: 800;
+      color: #5c4028;
+    }
+    .star-info-row.is-active {
+      background: #fff3cc;
+      border-color: #e4a431;
+      color: #442c1a;
+    }
+    .star-info-stars {
+      font-size: 13px;
+      letter-spacing: 1px;
+      line-height: 1;
+    }
+    .star-info-stars .on { color: #f0a41a; text-shadow: 0 1px 0 rgba(120, 68, 10, 0.25); }
+    .star-info-stars .off { color: #d8c6ac; }
+    .star-info-time {
+      font-variant-numeric: tabular-nums;
+      font-weight: 900;
+    }
+    .star-info-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #7c5c3e;
+      font-variant-numeric: tabular-nums;
+    }
+    .star-info-best {
+      color: #2f8f84;
+      font-weight: 900;
+    }
 
     .kraft-ribbon {
       position: relative;
@@ -779,36 +906,254 @@
       height: 100%;
       display: block;
     }
-    .time-label { font-size: 13px; font-weight: 800; color: #7c5c3e; margin-bottom: 6px; }
+    .time-label { font-size: 12.5px; font-weight: 800; color: #7c5c3e; margin-bottom: 4px; }
+    .win-fireworks-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 12;
+    }
+    .win-modal-card {
+      position: relative;
+      z-index: 4;
+      animation: winCardEnter 0.34s cubic-bezier(0.34, 1.48, 0.64, 1) both;
+    }
+    @keyframes winCardEnter {
+      0% { transform: scale(0.86) translateY(16px); opacity: 0; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    .win-showcase-card {
+      position: relative;
+      width: 100%;
+      margin: 0 auto 14px;
+      padding: 12px 13px;
+      border-radius: 16px;
+      border: 2.2px solid #4a311d;
+      background:
+        radial-gradient(circle at 22% 38%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 62%),
+        repeating-linear-gradient(
+          -32deg,
+          rgba(255, 255, 255, 0.24) 0px,
+          rgba(255, 255, 255, 0.24) 10px,
+          rgba(255, 255, 255, 0) 10px,
+          rgba(255, 255, 255, 0) 20px
+        ),
+        var(--win-accent, #f8e4a8);
+      box-shadow:
+        inset 0 0 0 3px rgba(255, 252, 244, 0.68),
+        0 4px 0 rgba(74, 49, 29, 0.16);
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      text-align: left;
+      overflow: hidden;
+    }
+    .win-showcase-card::after {
+      content: '';
+      position: absolute;
+      inset: 5px;
+      border-radius: 11px;
+      border: 1.5px dashed rgba(74, 49, 29, 0.22);
+      pointer-events: none;
+    }
+    .win-bear-wrap {
+      position: relative;
+      z-index: 1;
+      width: 88px;
+      height: 88px;
+      border-radius: 16px;
+      background: rgba(255, 252, 242, 0.86);
+      border: 2px solid #4a311d;
+      box-shadow: 0 3px 0 rgba(74, 49, 29, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      flex-shrink: 0;
+    }
+    .win-bear-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 3px 3px rgba(68, 44, 26, 0.22));
+      animation: winBearHop 2.2s ease-in-out infinite;
+    }
+    @keyframes winBearHop {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-4px) rotate(1.5deg); }
+    }
+    .win-showcase-info {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .win-level-meta {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(255, 252, 242, 0.92);
+      border: 1.5px solid rgba(74, 49, 29, 0.45);
+      font-size: 10.5px;
+      font-weight: 900;
+      color: #6b4623;
+      line-height: 1.25;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .win-level-name {
+      font-size: 15.5px;
+      font-weight: 900;
+      color: #3d2514;
+      line-height: 1.18;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .win-collage {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 1px;
+    }
+    .win-collage-chip {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #fffdf8;
+      border: 1.6px solid rgba(74, 49, 29, 0.35);
+      box-shadow: 0 2px 0 rgba(74, 49, 29, 0.14);
+      padding: 3px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      animation: chipPop 0.38s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    }
+    .win-collage-chip:nth-child(odd) { transform: rotate(-3deg); }
+    .win-collage-chip:nth-child(even) { transform: rotate(3deg); }
+    @keyframes chipPop {
+      0% { opacity: 0; transform: scale(0.4) translateY(6px); }
+      100% { opacity: 1; }
+    }
+    .win-collage-chip img,
+    .win-collage-chip canvas {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .win-tidied-count {
+      font-size: 11px;
+      font-weight: 800;
+      color: #6f4e31;
+    }
+
+    .stars-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 10px;
+      margin: 2px 0 10px;
+      min-height: 54px;
+    }
+    .win-star-slot {
+      position: relative;
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .win-star-slot.is-center {
+      width: 54px;
+      height: 54px;
+      transform: translateY(-7px);
+    }
+    .win-star-svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      overflow: visible;
+    }
+    .win-star-slot.is-earned .win-star-svg {
+      filter: drop-shadow(0 3px 0 rgba(182, 108, 16, 0.42)) drop-shadow(0 0 10px rgba(255, 206, 68, 0.55));
+      animation: starPop 0.5s cubic-bezier(0.34, 1.62, 0.64, 1) both;
+    }
+    .win-star-slot.is-empty .win-star-svg {
+      opacity: 0.58;
+      filter: none;
+    }
+    @keyframes starPop {
+      0% { transform: scale(0.18) rotate(-28deg); opacity: 0; }
+      70% { transform: scale(1.14) rotate(5deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0); opacity: 1; }
+    }
+
+    .win-time-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
     .time-pill {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      background: #c9a788;
-      color: #fff;
-      padding: 4px 16px 4px 8px;
+      background: #fff4df;
+      border: 2px solid #d4b082;
+      color: #4a311d;
+      padding: 4px 14px 4px 7px;
       border-radius: 999px;
       font-size: 16px;
       font-weight: 900;
       font-variant-numeric: tabular-nums;
-      margin-bottom: 12px;
+      box-shadow: inset 0 -2px 0 rgba(196, 152, 102, 0.25);
     }
     .time-clock-dot {
       width: 24px;
       height: 24px;
       border-radius: 999px;
-      background: #fff;
-      color: #b48a66;
+      background: #ffc857;
+      border: 1.5px solid #4a311d;
+      color: #4a311d;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
+      font-size: 13px;
     }
-    .stars-row { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 16px; }
-    .star-icon { font-size: 36px; filter: drop-shadow(0 3px 0 rgba(210, 128, 32, 0.5)); animation: starPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
-    @keyframes starPop {
-      0% { transform: scale(0.2) rotate(-25deg); opacity: 0; }
-      100% { transform: scale(1) rotate(0); opacity: 1; }
+    .win-new-badge {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, #ff9966 0%, #ef6c48 100%);
+      border: 1.8px solid #4a311d;
+      color: #fffdf8;
+      font-size: 10.5px;
+      font-weight: 900;
+      letter-spacing: 0.4px;
+      box-shadow: 0 2px 0 rgba(74, 49, 29, 0.24);
+      animation: starPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.42s both;
+    }
+    .win-star-hint {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #8c6642;
+      margin-bottom: 14px;
+      min-height: 16px;
+    }
+    .win-star-hint.is-perfect {
+      color: #c77614;
     }
     .btn-win-next {
       width: 100%;
@@ -1252,15 +1597,6 @@
       pointer-events: none;
     }
     .home-bear-img:active { transform: scale(1.08) translateY(-4px); }
-    .home-player-id {
-      position: absolute;
-      left: 2px;
-      bottom: -8px;
-      font-size: 11px;
-      font-weight: 700;
-      color: rgba(74, 49, 29, 0.45);
-      letter-spacing: 0.4px;
-    }
 
     /* ===== Settings Modal (Matching Cozy Reference Layout) ===== */
     .settings-rows {
@@ -1494,7 +1830,7 @@
       margin-top: 16px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       padding: 0 6px;
       font-size: 12px;
       font-weight: 700;
@@ -1808,6 +2144,16 @@
     }
     .diary-lvl-tile.is-cleared .diary-lvl-mark { color: #2b9a72; }
     .diary-lvl-tile.is-finale .diary-lvl-mark { color: #b53a2a; }
+    .diary-lvl-stars {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5px;
+      font-size: 9.5px;
+      line-height: 1;
+      letter-spacing: 0.3px;
+    }
+    .diary-lvl-stars .s-on { color: #eb9d18; }
+    .diary-lvl-stars .s-off { color: #d6c5ad; }
 
     /* ===== Full-Screen Story Cutscene Overlay (Prologue & Epilogue) ===== */
     .story-overlay {
@@ -2256,7 +2602,7 @@
       text-align: right;
     }
   </style>
-  <script type="module" crossorigin src="./chunks/index-BUVXHP8s.js"></script>
+  <script type="module" crossorigin src="./chunks/index-BY8Gjeyo.js"></script>
 </head>
 <body>
   <div id="gameShell" class="game-shell">
@@ -2294,6 +2640,7 @@
           <button id="btnSettings" title="Settings" class="gear-btn" aria-label="Settings" style="width:38px;height:38px;">
             <img src="./assets/ui/btn_gear.webp?v=ui3" alt="" />
           </button>
+          <button id="btnLevelInfo" title="Star Goals" class="info-circle-btn" type="button" aria-label="Star Goals">!</button>
         </div>
 
         <div class="kraft-ribbon">
@@ -2372,7 +2719,6 @@
       <div class="home-bottom-mascot">
         <img id="homeBearMascot" class="home-bear-img" src="./assets/ui/bear_ch1.webp?v=td11" alt="" />
         <div id="homeBearChapterPill" class="home-bear-chapter-pill">Ch.1 · First Cry &amp; Cradle</div>
-        <div id="homePlayerId" class="home-player-id">10248866</div>
       </div>
     </div>
 
@@ -2463,7 +2809,6 @@
           </div>
 
           <div class="settings-footer-meta">
-            <span id="settingsPlayerId">ID: 10248866</span>
             <span>0.4.0</span>
           </div>
         </div>
@@ -2537,6 +2882,9 @@
 
     <!-- Tap-Box Category Variant Preview Popover -->
     <div id="boxPreviewPopover" class="box-preview-pop hidden" role="status" aria-live="polite"></div>
+
+    <!-- Star Duration Goal Info Popover -->
+    <div id="starInfoPopover" class="star-info-pop hidden" role="dialog" aria-live="polite"></div>
 
     <!-- Fail Modal (When Temporary Tray Slots Are Full) -->
     <div id="failOverlay" class="cute-modal-overlay hidden">
@@ -2627,27 +2975,36 @@
 
     <!-- Win Modal -->
     <div id="modalOverlay" class="cute-modal-overlay hidden">
-      <div class="cute-modal-card">
+      <canvas id="winFireworksCanvas" class="win-fireworks-canvas" aria-hidden="true"></canvas>
+      <div class="cute-modal-card win-modal-card">
         <div class="cute-modal-banner">
           <span class="banner-star" style="left:16px;top:12px;">⭐</span>
           <span class="banner-star" style="right:18px;bottom:8px;animation-delay:0.5s;">⭐</span>
           <span id="modalTitle" class="sticker-title" data-i18n="winTitle">All Tidy!</span>
         </div>
         <div class="cute-modal-body">
-          <div id="modalRoomWrap" class="modal-preview-frame">
-            <img id="modalRoomPreview" src="./assets/backgrounds/desk_topdown.webp?v=td6" alt="" />
-          </div>
           <div id="modalWinInfo">
+            <div id="modalStars" class="stars-row" aria-label="Star rating"></div>
+            <div id="winShowcaseCard" class="win-showcase-card">
+              <div class="win-bear-wrap">
+                <img id="winBearImg" src="./assets/ui/bear_ch1.webp?v=td11" alt="" />
+              </div>
+              <div class="win-showcase-info">
+                <span id="winLevelMeta" class="win-level-meta">Ch.1 · Lv.1</span>
+                <div id="winLevelName" class="win-level-name">Baby Play Mat</div>
+                <div id="winItemsCollage" class="win-collage"></div>
+                <div id="winTidiedCount" class="win-tidied-count">54 items tidied</div>
+              </div>
+            </div>
             <div class="time-label" data-i18n="winTimeLabel">Time Used</div>
-            <div class="time-pill">
-              <span class="time-clock-dot">🕒</span>
-              <span id="modalTimeVal">00:00</span>
+            <div class="win-time-row">
+              <div class="time-pill">
+                <span class="time-clock-dot">🕒</span>
+                <span id="modalTimeVal">00:00</span>
+              </div>
+              <span id="winNewRecordBadge" class="win-new-badge hidden" data-i18n="winNewRecord">NEW BEST</span>
             </div>
-            <div id="modalStars" class="stars-row">
-              <span class="star-icon" style="animation-delay:0.08s;">⭐</span>
-              <span class="star-icon" style="animation-delay:0.20s;">⭐</span>
-              <span class="star-icon" style="animation-delay:0.32s;">⭐</span>
-            </div>
+            <div id="winStarHint" class="win-star-hint"></div>
           </div>
           <p id="modalDesc" class="hidden" style="font-size:13px;font-weight:700;color:#7a5a3c;margin:0 0 14px;"></p>
           <div id="modalActions"></div>
